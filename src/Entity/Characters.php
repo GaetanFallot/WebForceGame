@@ -43,12 +43,13 @@ class Characters
     #[ORM\Column(type: 'string', length: 255)]
     private $status;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $profession;
-
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'characters')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
+
+    #[ORM\ManyToOne(targetEntity: Profession::class, inversedBy: 'characters')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $profession;
 
 
     public function getId(): ?int
@@ -176,17 +177,6 @@ class Characters
         return $this;
     }
 
-    public function getProfession(): ?string
-    {
-        return $this->profession;
-    }
-
-    public function setProfession(string $profession): self
-    {
-        $this->profession = $profession;
-
-        return $this;
-    }
 
     public function getUser(): ?User
     {
@@ -196,6 +186,18 @@ class Characters
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getProfession(): ?Profession
+    {
+        return $this->profession;
+    }
+
+    public function setProfession(?Profession $profession): self
+    {
+        $this->profession = $profession;
 
         return $this;
     }
