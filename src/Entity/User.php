@@ -42,6 +42,9 @@ class User
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Characters::class)]
     private $characters;
 
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: UserToken::class, cascade: ['persist', 'remove'])]
+    private $userToken;
+
 
 
     public function __construct()
@@ -176,6 +179,23 @@ class User
                 $character->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUserToken(): ?UserToken
+    {
+        return $this->userToken;
+    }
+
+    public function setUserToken(UserToken $userToken): self
+    {
+        // set the owning side of the relation if necessary
+        if ($userToken->getUser() !== $this) {
+            $userToken->setUser($this);
+        }
+
+        $this->userToken = $userToken;
 
         return $this;
     }
