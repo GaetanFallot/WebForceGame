@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CharactersController!{% endblock %}
+
+{% block body %}
+
+
+<div class="form">
+{{form_start(form)}}
+
+    {{form_row(form.name)}}
+
+    {{form_row(form.image)}}
+
+    {{form_row(form.str)}}
+
+    {{form_row(form.con)}}
+
+    {{form_row(form.dex)}}
+
+    {{form_row(form.intel)}}
+
+    <button type="submit" class="btn btn_primary"> Créer </button>
+{{form_end(form)}}
+
+</div>
+{% endblock %}
