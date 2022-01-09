@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\CharactersRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CharactersRepository::class)]
 class Characters
@@ -13,35 +14,41 @@ class Characters
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 100)]
+    #[ORM\Column(type: 'string', length: 100, unique: true)]
+    #[Assert\NotBlank]
     private $name;
-
+    
     #[ORM\Column(type: 'string', length: 255)]
+    // #[Assert\NotBlank] J'arrive pas à obliger une image ici
     private $image;
 
     #[ORM\Column(type: 'integer')]
-    private $hp_max;
+    private ?int $hp_max = 50;
 
     #[ORM\Column(type: 'integer')]
-    private $hp;
+    private $hp ;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank]
     private $str;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank]
     private $con;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank]
     private $dex;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank]
     private $intel;
 
     #[ORM\Column(type: 'integer')]
-    private $level;
+    private ?int $level = 1;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $status;
+    private ?string $status = 'alive';
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'characters')]
     #[ORM\JoinColumn(nullable: false)]
@@ -50,6 +57,15 @@ class Characters
     #[ORM\ManyToOne(targetEntity: Profession::class, inversedBy: 'characters')]
     #[ORM\JoinColumn(nullable: false)]
     private $profession;
+
+    #[ORM\Column(type: 'integer')]
+    private ?int $att_contact = 0;
+
+    #[ORM\Column(type: 'integer')]
+    private ?int $att_distance = 0;
+
+    #[ORM\Column(type: 'integer')]
+    private ?int $att_magie = 0;
 
 
     public function getId(): ?int
@@ -198,6 +214,42 @@ class Characters
     public function setProfession(?Profession $profession): self
     {
         $this->profession = $profession;
+
+        return $this;
+    }
+
+    public function getAttContact(): ?int
+    {
+        return $this->att_contact;
+    }
+
+    public function setAttContact(int $att_contact): self
+    {
+        $this->att_contact = $att_contact;
+
+        return $this;
+    }
+
+    public function getAttDistance(): ?int
+    {
+        return $this->att_distance;
+    }
+
+    public function setAttDistance(int $att_distance): self
+    {
+        $this->att_distance = $att_distance;
+
+        return $this;
+    }
+
+    public function getAttMagie(): ?int
+    {
+        return $this->att_magie;
+    }
+
+    public function setAttMagie(int $att_magie): self
+    {
+        $this->att_magie = $att_magie;
 
         return $this;
     }
