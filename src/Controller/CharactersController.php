@@ -42,25 +42,14 @@ class CharactersController extends AbstractController
                 $characters->setImage($fileName);
             }
 
-            $hp_max = $characters->getHpMax();
-            $con = $characters->getCon();
-            $hp_max = 3*$con+$hp_max;
-            $characters->setHpMax($hp_max);
+            // $hp_max = $characters->getHpMax();
+            // // consitution = vitalité
+            // $con = $characters->getCon();
+            // $hp_max = 5*$con+$hp_max;
+            // $characters->setHpMax($hp_max);
 
-            $att_contact = $characters->getStr();
-            $att_contact = $att_contact*3;
-            $characters->setAttContact($att_contact);
 
-            $att_distance = $characters->getDex();
-            $att_distance = $att_distance*3;
-            $characters->setAttDistance($att_distance);
-            
-            $att_magie = $characters->getIntel();
-            $att_magie = $att_magie*3;
-            $characters->setAttMagie($att_magie);
-
-            $characters->setHp($hp_max);
-            
+            dd($characters->getHpMax());
             $manager -> persist($characters);
             $manager->flush();
         }
