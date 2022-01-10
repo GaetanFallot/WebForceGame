@@ -42,14 +42,6 @@ class CharactersController extends AbstractController
                 $characters->setImage($fileName);
             }
 
-            // $hp_max = $characters->getHpMax();
-            // // consitution = vitalité
-            // $con = $characters->getCon();
-            // $hp_max = 5*$con+$hp_max;
-            // $characters->setHpMax($hp_max);
-
-
-            dd($characters->getHpMax());
             $manager -> persist($characters);
             $manager->flush();
         }
