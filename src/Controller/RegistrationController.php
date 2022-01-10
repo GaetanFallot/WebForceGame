@@ -6,7 +6,6 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\AppAuthenticator;
 use App\Service\Mailer;
-use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -18,12 +17,12 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    private Mailer $mailer;
+    private $mailer;
 
-    public function __construct(Mailer $mailer){
+    public function __construct(Mailer $mailer) {
         $this->mailer = $mailer;
-    }
 
+    }
     #[Route('/register', name: 'app_register')]
     public function register(
         Request $request, 
@@ -44,9 +43,14 @@ class RegistrationController extends AbstractController
                 $user,
                 $form->get('password')->getData()
             );
-
+<<<<<<< layla
+            dd($hashedPassword);
             $user->setPassword($hashedPassword);
+=======
             $user->setUserToken($this->generateToken());
+
+
+>>>>>>> Envoie mail de confirmation
             $entityManager->persist($user);
 
             $entityManager->flush();
@@ -66,28 +70,21 @@ class RegistrationController extends AbstractController
             // do anything else you need here, like send an email
             $this->mailer->sendEmail($user->getEmail(), $user->getUserToken());
 
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
+            $this->mailer->sendEmail($user->getEmail(), $user->getUserToken());
         }
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
-    #[Route('/confirmer-mon-compte/{token}', name: 'confirm_account')]
-    public function confirmAccount(string $token): JsonResponse
-    {
+    #[Route('/confirmAccount/{token}', name: 'confirm_account')]
+    public function confirmAccount(string $token) {
         return $this->json($token);
+
     }
 
-    /**
-     * @throws \Exception
-     */
-    private function generateToken()
+    private function generateToken(): string
     {
-        return rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-'), '=');
+        return rtrim(strtr(base64_encode(random_bytes(32)), '+/-', '-_'), '=');
     }
 }

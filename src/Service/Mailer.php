@@ -6,25 +6,22 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 
 class Mailer {
-    private MailerInterface $mailer;
-
     public function __construct(MailerInterface $mailer) {
         $this->mailer = $mailer;
     }
     public function sendEmail($email, $token) {
         $email = (new TemplatedEmail())
             ->from('eniscigtest@gmail.com')
-            ->to(new Address($email))
-            ->subject("Merci de votre inscription")
+            ->to(new Address($user->getEmail()))
+            ->subject('Thanks for signing up!')
 
             // path of the Twig template to render
             ->htmlTemplate('emails/registration.html.twig')
 
             // pass variables (name => value) to the template
             ->context([
-                'token' => $token,
+                'expiration_date' => new \DateTime('+7 days'),
+                'username' => 'foo',
             ]);
-
-        $this->mailer->send($email);
     }
 }
