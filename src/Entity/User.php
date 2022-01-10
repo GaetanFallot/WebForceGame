@@ -52,6 +52,8 @@ class User
     public function __construct()
     {
         $this->characters = new ArrayCollection();
+        $this->role = ['ROLE_USER'];
+        $this->status = false;
     }
 
     public function getId(): ?int
