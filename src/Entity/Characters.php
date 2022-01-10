@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Interfaces\EntityImageInterface;
 use App\Repository\CharactersRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -9,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[UniqueEntity(fields: ['name'], message: 'Un personnage existe déjà avec cet nom')]
 #[ORM\Entity(repositoryClass: CharactersRepository::class)]
-class Characters
+class Characters implements EntityImageInterface
 {
 
     const ABILITIES_COEFF = 3;
@@ -247,5 +248,10 @@ class Characters
     {
         
         return $this->getStr()+$this->getCon()+$this->getDex()+$this->getIntel();
+    }
+
+    public function getImageDirectory(): string
+    {
+        return self::IMAGE_DIRECTORY;
     }
 }

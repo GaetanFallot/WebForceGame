@@ -13,7 +13,7 @@ class Profession
 
 
     
-    const IMAGE_DIRECTORY = "/image/profession";
+    const IMAGE_DIRECTORY = "/image/class";
 
 
     
@@ -127,7 +127,7 @@ class Profession
 
     public function getImageSrc(): ?string
     {
-        return self::IMAGE_DIRECTORY.$this->image;
+        return self::IMAGE_DIRECTORY."/".$this->image;
     }
 
 }
