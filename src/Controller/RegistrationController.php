@@ -22,6 +22,7 @@ class RegistrationController extends AbstractController
 {
 
 
+    }
     #[Route('/register', name: 'app_register')]
     public function register(
         Request $request, 
@@ -43,7 +44,8 @@ class RegistrationController extends AbstractController
                 $user,
                 $form->get('password')->getData()
             );
-
+<<<<<<< layla
+            dd($hashedPassword);
             $user->setPassword($hashedPassword);
             $entityManager->persist($user);
 
