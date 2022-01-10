@@ -58,6 +58,8 @@ main {
     border: 3px solid black;
     border-radius: 30px;
     background-image: url("https://cdn.discordapp.com/attachments/928215357318111262/930099717201858600/1627468434_837161.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
     
     
   }
