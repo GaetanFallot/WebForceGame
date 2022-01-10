@@ -5,9 +5,12 @@ namespace App\Form;
 use App\Entity\Characters;
 use App\Entity\Profession;
 use App\Entity\User;
+use Doctrine\DBAL\Types\IntegerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType as TypeIntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
@@ -17,7 +20,9 @@ class CharactersType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
+            ->add('name', TextType::class, [
+                'label' => "Nom de votre personnage."
+            ])
             ->add('image', FileType::class, [
                 'label' => 'image',
                 'mapped' => false,
@@ -37,10 +42,18 @@ class CharactersType extends AbstractType
             ])
             // ->add('hp_max')
             // ->add('hp')
-            ->add('str')
-            ->add('con')
-            ->add('dex')
-            ->add('intel')
+            ->add('str', TypeIntegerType::class, [
+                'label' => "Force de votre personnage."
+            ])
+            ->add('con', TypeIntegerType::class, [
+                'label' => "Force de votre personnage."
+            ])
+            ->add('dex', TypeIntegerType::class, [
+                'label' => "Force de votre personnage."
+            ])
+            ->add('intel', TypeIntegerType::class, [
+                'label' => "Force de votre personnage."
+            ])
             // ->add('level')
             // ->add('status')
             ->add('profession', EntityType::class, [

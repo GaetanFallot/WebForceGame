@@ -13,7 +13,7 @@ class UserToken
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\OneToOne(inversedBy: 'userToken', targetEntity: user::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'userToken', targetEntity: User::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
