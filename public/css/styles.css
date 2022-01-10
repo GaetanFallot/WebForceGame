@@ -4,13 +4,12 @@
     box-sizing: border-box;
 
 }
-
+/*................PAGE HOME..................;*/
 main {
     width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
-    /* font-family: 'Happy Monkey', cursive; */
     font-family: 'Special Elite', cursive;
 }
 
@@ -58,10 +57,7 @@ main {
     border: 3px solid black;
     border-radius: 30px;
     background-image: url("https://cdn.discordapp.com/attachments/928215357318111262/930099717201858600/1627468434_837161.jpg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    
-    
+    background-size: cover;
   }
   .card__face--back   {
     position: absolute;
@@ -77,9 +73,95 @@ main {
     font-family: 'Happy Monkey', cursive;
   }
   
-  
-  
   .card__face--back {
     transform: rotateY(180deg);
   }
+
+  /*..............HEADER................*/
+
+
+
+header {
+    width: 100%;
+    height: 200px;
+    background-color: #dab47c;
+}
+
+.container-header {
+    display: flex;
+}
+
+.nav-main-header {
+    width: 75%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-header {
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    
+}
+
+.container-header img{
+    width: 300px;
+}
+
+
+
+
+  /*...............FOOTER...............*/
+
+  footer {
+    width: 100%;
+    height: 250px;
+    background: #dab47c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Special Elite', cursive;
+}
+
+.footer-container {
+    width: 1200px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 20px;
+    gap: 35px;
+}
+
+.nav-footer a {
+    text-decoration: none;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.lien-réseaux {
+    width: 400px;
+    display: flex;
+    justify-content: space-around;
+    margin: 10px;
+    border-top: 2px solid black;
+}
+
+.lien-réseaux svg {
+    margin-top: 20px;
+}
+
+.footer-container p {
+    font-size: 12px;
+    padding-top: 30px;
+    
+}
   
