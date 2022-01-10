@@ -36,7 +36,6 @@ class RegistrationController extends AbstractController
             );
             dd($hashedPassword);
             $user->setPassword($hashedPassword);
-
             $entityManager->persist($user);
 
             $entityManager->flush();
