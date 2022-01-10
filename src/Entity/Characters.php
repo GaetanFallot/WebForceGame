@@ -4,11 +4,16 @@ namespace App\Entity;
 
 use App\Repository\CharactersRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
+#[UniqueEntity(fields: ['name'], message: 'Un personnage existe déjà avec cet nom')]
 #[ORM\Entity(repositoryClass: CharactersRepository::class)]
 class Characters
 {
+
+    const IMAGE_DIRECTORY = "/image/character";
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -96,6 +101,13 @@ class Characters
 
         return $this;
     }
+
+
+    public function getImageSrc(): ?string
+    {
+        return self::IMAGE_DIRECTORY.$this->image;
+    }
+
 
     public function getHpMax(): ?int
     {
