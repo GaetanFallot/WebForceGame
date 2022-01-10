@@ -30,11 +30,15 @@ class SecurityController extends AbstractController
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword(
+                $this->passwordEncoder->encodePassword($user->$form->getData())
+            );
             $user->setCreatedAt(new DateTimeImmutable);
             dd($user);
             $manager->persist($user);
 >>>>>>> Ajout de registration
 
+<<<<<<< layla
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -49,5 +53,13 @@ class SecurityController extends AbstractController
     public function logout(): void
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+=======
+            $manager->flush();
+            $this->addFlash("success", "Inscription réussie ! ");
+        }
+        return $this->render('security/registration.html.twig', [
+            'form' => $form->createView()
+        ]);
+>>>>>>> Ajout de registration
     }
 }
