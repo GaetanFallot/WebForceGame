@@ -2,14 +2,22 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\CreatedAtTrait;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
+#[UniqueEntity(fields: ['email'], message: 'Un compte existe déjà avec cet email')]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User
 {
+
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -24,13 +32,11 @@ class User
     #[ORM\Column(type: 'string', length: 100)]
     private $user_name;
 
-    #[ORM\Column(type: 'string', length: 100)]
+    #[ORM\Column(type: 'string', length: 100, unique: true)]
     private $email;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $password;
-
-    public $confirm_password ;
 
     #[ORM\Column(type: 'datetime_immutable')]
     private $created_at;
