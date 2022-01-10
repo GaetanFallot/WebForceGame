@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Unique;
 
 class CharactersController extends AbstractController
 {
@@ -34,6 +35,13 @@ class CharactersController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
 
+            if($file = $form->get('image')->getData()){
+                $directory = $this->getParameter('public_path').Characters::IMAGE_DIRECTORY;
+                $fileName = sprintf("%s-%s.%s", explode(".", $file->getClientOriginalName())[0] ?? "avatar", uniqid(), $file->guessClientExtension());
+                $file->move($directory, $fileName);
+                $characters->setImage($fileName);
+            }
+
             $hp_max = $characters->getHpMax();
             $con = $characters->getCon();
             $hp_max = 3*$con+$hp_max;
@@ -52,8 +60,7 @@ class CharactersController extends AbstractController
             $characters->setAttMagie($att_magie);
 
             $characters->setHp($hp_max);
-
-            dd($form);
+            
             $manager -> persist($characters);
             $manager->flush();
         }

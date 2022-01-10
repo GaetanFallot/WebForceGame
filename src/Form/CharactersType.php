@@ -27,11 +27,10 @@ class CharactersType extends AbstractType
                     new Image([
                         'maxSize' => '30000000',
                         'mimeTypes' => [
-                            'image/pdf',
-                            'image/x-pdf',
-                            'image/png',
+                            'image/*',
+
                         ],
-                        // 'message' => 'Veuillez mettre un fichier pdf ou png.'
+                        // 'message' => 'Veuillez mettre un fichier png ou jpeg.'
                     ])
                 ]
 
