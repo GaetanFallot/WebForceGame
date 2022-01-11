@@ -6,6 +6,10 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\AppAuthenticator;
 use App\Service\Mailer;
+<<<<<<< layla
+=======
+use DateTimeImmutable;
+>>>>>>> Envoie mail de confirmation
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -17,12 +21,21 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
+<<<<<<< layla
     private $mailer;
 
     public function __construct(Mailer $mailer) {
         $this->mailer = $mailer;
 
     }
+=======
+    private Mailer $mailer;
+
+    public function __construct(Mailer $mailer){
+        $this->mailer = $mailer;
+    }
+
+>>>>>>> Envoie mail de confirmation
     #[Route('/register', name: 'app_register')]
     public function register(
         Request $request, 
@@ -44,12 +57,18 @@ class RegistrationController extends AbstractController
                 $form->get('password')->getData()
             );
 <<<<<<< layla
+<<<<<<< layla
             dd($hashedPassword);
             $user->setPassword($hashedPassword);
 =======
             $user->setUserToken($this->generateToken());
 
 
+>>>>>>> Envoie mail de confirmation
+=======
+
+            $user->setPassword($hashedPassword);
+            $user->setUserToken($this->generateToken());
 >>>>>>> Envoie mail de confirmation
             $entityManager->persist($user);
 
@@ -77,6 +96,7 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
+<<<<<<< layla
     #[Route('/confirmAccount/{token}', name: 'confirm_account')]
     public function confirmAccount(string $token) {
         return $this->json($token);
@@ -86,5 +106,19 @@ class RegistrationController extends AbstractController
     private function generateToken(): string
     {
         return rtrim(strtr(base64_encode(random_bytes(32)), '+/-', '-_'), '=');
+=======
+    #[Route('/confirmer-mon-compte/{token}', name: 'confirm_account')]
+    public function confirmAccount(string $token): JsonResponse
+    {
+        return $this->json($token);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    private function generateToken()
+    {
+        return rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-'), '=');
+>>>>>>> Envoie mail de confirmation
     }
 }
