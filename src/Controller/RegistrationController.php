@@ -22,7 +22,7 @@ class RegistrationController extends AbstractController
 {
 
 
-    #[Route('/register', name: 'app_register')]
+    #[Route('/inscription', name: 'app_register')]
     public function register(
         Request $request, 
         UserPasswordHasherInterface $userPasswordHasher, 
@@ -49,6 +49,7 @@ class RegistrationController extends AbstractController
             $userToken = (new UserToken())
                 ->setUser($user);
                 $userToken->setExpiresAt(new DateTimeImmutable("+ 10 year"));
+            $user->setStatus(User::STATUS_INACTIVE);
             $entityManager->persist($userToken);
 
             $entityManager->flush();
