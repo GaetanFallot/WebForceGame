@@ -76,7 +76,7 @@ main {
     border-radius: 15px;
     font-family: 'Milonga', cursive;
     padding: 5px;
-    background-image: url(https://previews.123rf.com/images/andreykuzmin/andreykuzmin1606/andreykuzmin160600016/60227788-pirates-%C3%A2g%C3%A9s-fond-de-carte-carte-au-tr%C3%A9sor-vieux-avec-boussole-.jpg);
+    background-image: url(../image/fond_carte.jpg);
     background-size: cover;
     background-position: center;
 }
