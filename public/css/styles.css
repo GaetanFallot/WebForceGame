@@ -16,8 +16,10 @@ main {
 .container-main {
     width: 1200px;
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
+    /* justify-content: space-between; */
+    gap: 0px 100px ;
+    
 }
 
 .container-card {
@@ -37,7 +39,6 @@ main {
     transform-origin: center right;
     transition: transform 1s;
     
-    /* z-index: 2; */
   }
   
   .card.is-flipped {
