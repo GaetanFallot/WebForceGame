@@ -12,10 +12,10 @@ class BaseController extends AbstractController
     #[Route('', name: 'home')]
     public function index(ProfessionRepository $professionRepository): Response
     {
-        $profession = $professionRepository->find(2);
+        $professions = $professionRepository->findAll();
 
         return $this->render('base/index.html.twig', [
-            'profession' => $profession,
+            'professions' => $professions,
         ]);
     }
 
