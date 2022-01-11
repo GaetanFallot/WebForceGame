@@ -18,6 +18,7 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+<<<<<<< layla
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
@@ -32,6 +33,7 @@ class SecurityController extends AbstractController
             dd($user);
             $manager->persist($user);
 
+<<<<<<< layla
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user

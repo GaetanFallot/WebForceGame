@@ -6,7 +6,10 @@ use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\AppAuthenticator;
 use App\Service\Mailer;
+<<<<<<< layla
+=======
 use DateTimeImmutable;
+>>>>>>> Envoie mail de confirmation
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -30,6 +33,7 @@ class RegistrationController extends AbstractController
         $this->mailer = $mailer;
     }
 
+>>>>>>> Envoie mail de confirmation
     #[Route('/register', name: 'app_register')]
     public function register(
         Request $request, 
@@ -58,6 +62,7 @@ class RegistrationController extends AbstractController
 
             $user->setPassword($hashedPassword);
             $user->setUserToken($this->generateToken());
+>>>>>>> Envoie mail de confirmation
             $entityManager->persist($user);
 
             $entityManager->flush();
@@ -102,5 +107,6 @@ class RegistrationController extends AbstractController
     private function generateToken()
     {
         return rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-'), '=');
+>>>>>>> Envoie mail de confirmation
     }
 }
