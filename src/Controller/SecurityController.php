@@ -18,7 +18,6 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-<<<<<<< layla
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
@@ -32,8 +31,8 @@ class SecurityController extends AbstractController
             $user->setCreatedAt(new DateTimeImmutable);
             dd($user);
             $manager->persist($user);
+        }
 
-<<<<<<< layla
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
@@ -45,14 +44,12 @@ class SecurityController extends AbstractController
     /**
      * @Route("/logout", name="app_logout")
      */
-    public function logout(): void
+    public function logout()
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
             $manager->flush();
             $this->addFlash("success", "Inscription réussie ! ");
-        }
-        return $this->render('security/registration.html.twig', [
-            'form' => $form->createView()
-        ]);
+        
+        return $this->redirectToRoute('app_register');
     }
 }

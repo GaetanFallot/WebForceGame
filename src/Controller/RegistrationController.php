@@ -6,7 +6,6 @@ use App\Entity\User;
 use App\Entity\UserToken;
 use App\Form\RegistrationFormType;
 use App\Security\AppAuthenticator;
-use App\Service\Mailer;
 use App\Service\NotifyService;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,6 +13,7 @@ use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Mailer as Mailer;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -27,11 +27,7 @@ class RegistrationController extends AbstractController
         $this->mailer = $mailer;
 
     }
-    private Mailer $mailer;
 
-    public function __construct(Mailer $mailer){
-        $this->mailer = $mailer;
-    }
     #[Route('/register', name: 'app_register')]
     public function register(
         Request $request, 
@@ -43,6 +39,7 @@ class RegistrationController extends AbstractController
     ): Response
     {
         $user = new User();
+        $userToken = new UserToken();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -93,26 +90,14 @@ class RegistrationController extends AbstractController
         $this->addFlash('danger', "Token invalide, Veuillez recréer un compte.");
         return $this->redirectToRoute('app_register');
     }
-    #[Route('/confirmAccount/{token}', name: 'confirm_account')]
-    public function confirmAccount(string $token) {
-        return $this->json($token);
-
-    }
 
     private function generateToken(): string
     {
         return rtrim(strtr(base64_encode(random_bytes(32)), '+/-', '-_'), '=');
-    #[Route('/confirmer-mon-compte/{token}', name: 'confirm_account')]
+    }
+        #[Route('/confirmer-mon-compte/{token}', name: 'confirm_account')]
     public function confirmAccount(string $token): JsonResponse
     {
         return $this->json($token);
-    }
-
-    /**
-     * @throws \Exception
-     */
-    private function generateToken()
-    {
-        return rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-'), '=');
     }
 }
