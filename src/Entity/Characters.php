@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Entity\Interfaces\EntityImageInterface;
 use App\Repository\CharactersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -68,6 +70,25 @@ class Characters implements EntityImageInterface
     #[ORM\ManyToOne(targetEntity: Profession::class, inversedBy: 'characters')]
     #[ORM\JoinColumn(nullable: false)]
     private $profession;
+
+    #[ORM\Column(type: 'integer')]
+    #[ORM\JoinColumn(nullable: false)]
+    private int $experience = 0;
+
+    #[ORM\ManyToMany(targetEntity: Combat::class, mappedBy: 'characters')]
+    private $combats;
+
+    #[ORM\OneToMany(mappedBy: 'vainqueur', targetEntity: Combat::class)]
+    private $combatsWon;
+
+
+
+    public function __construct()
+    {
+        $this->combats = new ArrayCollection();
+        $this->combatsWon = new ArrayCollection();
+    }
+
 
 
 
@@ -254,4 +275,75 @@ class Characters implements EntityImageInterface
     {
         return self::IMAGE_DIRECTORY;
     }
+
+    public function getExperience(): ?string
+    {
+        return $this->experience;
+    }
+
+    public function setExperience(string $experience): self
+    {
+        $this->experience = $experience;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Combat[]
+     */
+    public function getCombats(): Collection
+    {
+        return $this->combats;
+    }
+
+    public function addCombat(Combat $combat): self
+    {
+        if (!$this->combats->contains($combat)) {
+            $this->combats[] = $combat;
+            $combat->addCharacter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCombat(Combat $combat): self
+    {
+        if ($this->combats->removeElement($combat)) {
+            $combat->removeCharacter($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Combat[]
+     */
+    public function getCombatsWon(): Collection
+    {
+        return $this->combatsWon;
+    }
+
+    public function addCombatsWon(Combat $combatsWon): self
+    {
+        if (!$this->combatsWon->contains($combatsWon)) {
+            $this->combatsWon[] = $combatsWon;
+            $combatsWon->setVainqueur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCombatsWon(Combat $combatsWon): self
+    {
+        if ($this->combatsWon->removeElement($combatsWon)) {
+            // set the owning side to null (unless already changed)
+            if ($combatsWon->getVainqueur() === $this) {
+                $combatsWon->setVainqueur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    
 }

@@ -21,6 +21,4 @@ class FileUploader
         $file->move($directory, $fileName);
         $entity->setImage($fileName);
     }
-
-
 }
