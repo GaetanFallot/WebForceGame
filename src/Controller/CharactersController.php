@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Characters;
 use App\Form\CharactersType;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +26,8 @@ class CharactersController extends AbstractController
     #[Route('/createCharacters', name: 'createCharacters')]
     public function create(
         Request $request, 
-        EntityManagerInterface $manager
+        EntityManagerInterface $manager,
+        FileUploader $fileUploader
         ): Response
     {
         $characters = new Characters();
@@ -36,30 +38,8 @@ class CharactersController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
 
             if($file = $form->get('image')->getData()){
-                $directory = $this->getParameter('public_path').Characters::IMAGE_DIRECTORY;
-                $fileName = sprintf("%s-%s.%s", explode(".", $file->getClientOriginalName())[0] ?? "avatar", uniqid(), $file->guessClientExtension());
-                $file->move($directory, $fileName);
-                $characters->setImage($fileName);
+                $fileUploader->upload($characters, $file);
             }
-
-            $hp_max = $characters->getHpMax();
-            $con = $characters->getCon();
-            $hp_max = 3*$con+$hp_max;
-            $characters->setHpMax($hp_max);
-
-            $att_contact = $characters->getStr();
-            $att_contact = $att_contact*3;
-            $characters->setAttContact($att_contact);
-
-            $att_distance = $characters->getDex();
-            $att_distance = $att_distance*3;
-            $characters->setAttDistance($att_distance);
-            
-            $att_magie = $characters->getIntel();
-            $att_magie = $att_magie*3;
-            $characters->setAttMagie($att_magie);
-
-            $characters->setHp($hp_max);
             
             $manager -> persist($characters);
             $manager->flush();

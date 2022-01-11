@@ -5,11 +5,66 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Accueil !</h1>
+	
+	<main>
 
-	<p class="mt-5">Bienvenue sur mon site, vous êtes à l'accueil</p>
+		<img src="{{profession.imageSrc}}" alt=""/>
 
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur cupiditate ex exercitationem impedit, ipsa iure laudantium molestiae obcaecati sed totam?</p>
+		<h1>Bienvenue sur WebForce Game</h1>
+		<div class="container-main">
+			<div class="container-card">
+        		<div class="card">
+					
+					<img src="{{ asset('image/carteBackG.png') }}" alt=""/>
+            		<div class="card__face card__face--front">
+                		<div>
+                    		<img src="{{ asset('image/class/rogue_ok.png') }}" alt="dé voleur" />
+							<h3 class="card__face">VOLEUR</h3>
+                		</div>
+            		</div>
+            		<div class="card__face card__face--back pile">Les barbares, bien que différents, ont en commun leur rage : un déchaînement de fureur, inextinguible et irraisonné. Bien plus qu'une émotion passagère, leur colère est celle d'un féroce prédateur acculé, l'assaut implacable de la tempête, le tumulte d'une mer démontée. Pour certains, leur rage est le fruit d'une communion avec de fiers esprits animaux. D'autres la puisent d'une réserve trouble de colère contre ce monde de souffrance. Mais pour tous, la rage est une force qui n'alimente pas que leur frénésie guerrière. Elle leur donne aussi des réflexes, une résistance et des prouesses physiques incroyables.</div>
+        		</div>
+    		</div>
 
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolor facilis maxime mollitia sed totam.</p>
+			<div class="container-card">
+        		<div class="card">
+            
+            		<div class="card__face card__face--front">
+                		<div>
+                    		<img src="{{ asset('image/class/barbarian_ok.png') }}" alt="dé voleur" />
+							<h3 class="card__face">BARBARE</h3>
+                		</div>
+            		</div>
+            		<div class="card__face card__face--back pile">Les barbares, bien que différents, ont en commun leur rage : un déchaînement de fureur, inextinguible et irraisonné. Bien plus qu'une émotion passagère, leur colère est celle d'un féroce prédateur acculé, l'assaut implacable de la tempête, le tumulte d'une mer démontée. Pour certains, leur rage est le fruit d'une communion avec de fiers esprits animaux. D'autres la puisent d'une réserve trouble de colère contre ce monde de souffrance. Mais pour tous, la rage est une force qui n'alimente pas que leur frénésie guerrière. Elle leur donne aussi des réflexes, une résistance et des prouesses physiques incroyables.</div>
+        		</div>
+    		</div>
+
+			<div class="container-card">
+        		<div class="card">
+            
+            		<div class="card__face card__face--front">
+                		<div>
+                    		<img src="{{ asset('image/class/bard_ok.png') }}" alt="dé voleur" />
+							<h3 class="card__face">BARDE</h3>
+                		</div>
+            		</div>
+            		<div class="card__face card__face--back pile">Les barbares, bien que différents, ont en commun leur rage : un déchaînement de fureur, inextinguible et irraisonné. Bien plus qu'une émotion passagère, leur colère est celle d'un féroce prédateur acculé, l'assaut implacable de la tempête, le tumulte d'une mer démontée. Pour certains, leur rage est le fruit d'une communion avec de fiers esprits animaux. D'autres la puisent d'une réserve trouble de colère contre ce monde de souffrance. Mais pour tous, la rage est une force qui n'alimente pas que leur frénésie guerrière. Elle leur donne aussi des réflexes, une résistance et des prouesses physiques incroyables.</div>
+        		</div>
+    		</div>
+
+			<div class="container-card">
+        		<div class="card">
+            
+            		<div class="card__face card__face--front">
+               		 	<div>
+                    		<img src="{{ asset('image/class/druid_ok.png') }}" alt="dé voleur" />
+							<h3 class="card__face">DRUIDE</h3>
+                		</div>
+            		</div>
+            		<div class="card__face card__face--back pile">Les barbares, bien que différents, ont en commun leur rage : un déchaînement de fureur, inextinguible et irraisonné. Bien plus qu'une émotion passagère, leur colère est celle d'un féroce prédateur acculé, l'assaut implacable de la tempête, le tumulte d'une mer démontée. Pour certains, leur rage est le fruit d'une communion avec de fiers esprits animaux. D'autres la puisent d'une réserve trouble de colère contre ce monde de souffrance. Mais pour tous, la rage est une force qui n'alimente pas que leur frénésie guerrière. Elle leur donne aussi des réflexes, une résistance et des prouesses physiques incroyables.</div>
+        		</div>
+    		</div>
+
+		</div>
+	</main>		
 {% endblock %}

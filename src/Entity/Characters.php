@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Interfaces\EntityImageInterface;
 use App\Repository\CharactersRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -9,10 +10,15 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[UniqueEntity(fields: ['name'], message: 'Un personnage existe déjà avec cet nom')]
 #[ORM\Entity(repositoryClass: CharactersRepository::class)]
-class Characters
+class Characters implements EntityImageInterface
 {
 
+    const ABILITIES_COEFF = 3;
+    const VITALITY_COEFF = 5;
+
     const IMAGE_DIRECTORY = "/image/character";
+
+    const MAX_TOTAL_ABILITIES = 5;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -35,22 +41,22 @@ class Characters
 
     #[ORM\Column(type: 'integer')]
     #[Assert\NotBlank]
-    private $str;
+    private int $str = 0;
 
     #[ORM\Column(type: 'integer')]
     #[Assert\NotBlank]
-    private $con;
+    private int $con = 0;
 
     #[ORM\Column(type: 'integer')]
     #[Assert\NotBlank]
-    private $dex;
+    private int $dex = 0;
 
     #[ORM\Column(type: 'integer')]
     #[Assert\NotBlank]
-    private $intel;
+    private int $intel = 0 ;
 
     #[ORM\Column(type: 'integer')]
-    private ?int $level = 1;
+    private int $level = 1;
 
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $status = 'alive';
@@ -63,14 +69,6 @@ class Characters
     #[ORM\JoinColumn(nullable: false)]
     private $profession;
 
-    #[ORM\Column(type: 'integer')]
-    private ?int $att_contact = 0;
-
-    #[ORM\Column(type: 'integer')]
-    private ?int $att_distance = 0;
-
-    #[ORM\Column(type: 'integer')]
-    private ?int $att_magie = 0;
 
 
     public function getId(): ?int
@@ -111,7 +109,7 @@ class Characters
 
     public function getHpMax(): ?int
     {
-        return $this->hp_max;
+        return  $this->getCon()*self::VITALITY_COEFF+$this->hp_max;
     }
 
     public function setHpMax(int $hp_max): self
@@ -128,7 +126,7 @@ class Characters
 
     public function setHp(int $hp): self
     {
-        $this->hp = $hp;
+        $this->hp = $this->getHpMax();
 
         return $this;
     }
@@ -230,39 +228,30 @@ class Characters
         return $this;
     }
 
-    public function getAttContact(): ?int
+    public function getAttContact(): int
     {
-        return $this->att_contact;
+        return $this->str*self::ABILITIES_COEFF;
     }
 
-    public function setAttContact(int $att_contact): self
+    public function getAttDistance(): int
     {
-        $this->att_contact = $att_contact;
-
-        return $this;
+        return $this->dex*self::ABILITIES_COEFF;
     }
 
-    public function getAttDistance(): ?int
+    public function getAttMagie(): int
     {
-        return $this->att_distance;
+        return $this->intel*self::ABILITIES_COEFF;
     }
 
-    public function setAttDistance(int $att_distance): self
+    #[Assert\EqualTo(value: self::MAX_TOTAL_ABILITIES,)]
+    public function getTotalAbilities(): int
     {
-        $this->att_distance = $att_distance;
-
-        return $this;
+        
+        return $this->getStr()+$this->getCon()+$this->getDex()+$this->getIntel();
     }
 
-    public function getAttMagie(): ?int
+    public function getImageDirectory(): string
     {
-        return $this->att_magie;
-    }
-
-    public function setAttMagie(int $att_magie): self
-    {
-        $this->att_magie = $att_magie;
-
-        return $this;
+        return self::IMAGE_DIRECTORY;
     }
 }

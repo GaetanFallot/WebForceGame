@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class CharactersType extends AbstractType
 {
@@ -21,10 +22,10 @@ class CharactersType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => "Nom de votre personnage."
+                'label' => "Nom de votre personnage:"
             ])
             ->add('image', FileType::class, [
-                'label' => 'image',
+                'label' => 'Image de votre personnage:',
                 'mapped' => false,
                 'required' => false,
 
@@ -33,26 +34,25 @@ class CharactersType extends AbstractType
                         'maxSize' => '30000000',
                         'mimeTypes' => [
                             'image/*',
-
                         ],
-                        // 'message' => 'Veuillez mettre un fichier png ou jpeg.'
-                    ])
+                    ]),
+                    new NotBlank(['message' => "Vous devez fournir une image."])
                 ]
 
             ])
             // ->add('hp_max')
             // ->add('hp')
             ->add('str', TypeIntegerType::class, [
-                'label' => "Force de votre personnage."
+                'label' => "Force de votre personnage:"
             ])
             ->add('con', TypeIntegerType::class, [
-                'label' => "Force de votre personnage."
+                'label' => "Vitalité de votre personnage:"
             ])
             ->add('dex', TypeIntegerType::class, [
-                'label' => "Force de votre personnage."
+                'label' => "Déxtérité de votre personnage:"
             ])
             ->add('intel', TypeIntegerType::class, [
-                'label' => "Force de votre personnage."
+                'label' => "Intelligence de votre personnage:"
             ])
             // ->add('level')
             // ->add('status')
