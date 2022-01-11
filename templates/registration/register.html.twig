@@ -9,23 +9,23 @@
 
     <h1>Inscription</h1>
 
-    {{ form_start(registrationForm) }}
+    {{ form_start(form) }}
 
-    {{ form_row(registrationForm.firstname) }}
+    {{ form_row(form.firstname) }}
 
-    {{ form_row(registrationForm.lastname) }}
+    {{ form_row(form.lastname) }}
 
-    {{ form_row(registrationForm.user_name) }}
+    {{ form_row(form.user_name) }}
 
-    {{ form_row(registrationForm.email) }}
+    {{ form_row(form.email) }}
 
-    {{ form_row(registrationForm.password.first) }}
+    {{ form_row(form.password.first) }}
     
-    {{ form_row(registrationForm.password.second) }}
+    {{ form_row(form.password.second) }}
 
-    {{ form_row(registrationForm.agreeTerms) }}
+    {{ form_row(form.agreeTerms) }}
 
     <button type="submit">S'inscrire</button>
 
-    {{ form_end(registrationForm) }}
+    {{ form_end(form) }}
 {% endblock %}

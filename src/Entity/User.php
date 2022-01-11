@@ -21,6 +21,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 
 
+    const STATUS_ACTIVE = 'active';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
@@ -54,6 +56,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $characters;
 
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: UserToken::class, cascade: ['persist', 'remove'])]
+
     private $userToken;
 
     /**

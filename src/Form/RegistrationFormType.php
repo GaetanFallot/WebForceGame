@@ -29,7 +29,7 @@ class RegistrationFormType extends AbstractType
             ->add('user_name', TextType::class, [
                 'label' => "Votre pseudo",
             ])
-            ->add('email',EmailType::class,[
+            ->add('email', EmailType::class, [
                 'label' => "Votre email",
             ])
             ->add('agreeTerms', CheckboxType::class, [
@@ -64,8 +64,7 @@ class RegistrationFormType extends AbstractType
                     'label' => "Confirmez mot de passe",
                     'attr' => ['autocomplete' => 'new-password'],
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
