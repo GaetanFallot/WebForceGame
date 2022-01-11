@@ -23,6 +23,14 @@ class RegistrationController extends AbstractController
 
 
     }
+=======
+    private Mailer $mailer;
+
+    public function __construct(Mailer $mailer){
+        $this->mailer = $mailer;
+    }
+
+>>>>>>> Envoie mail de confirmation
     #[Route('/register', name: 'app_register')]
     public function register(
         Request $request, 
@@ -44,6 +52,7 @@ class RegistrationController extends AbstractController
                 $user,
                 $form->get('password')->getData()
             );
+<<<<<<< layla
 <<<<<<< layla
             dd($hashedPassword);
             $user->setPassword($hashedPassword);
@@ -117,5 +126,14 @@ class RegistrationController extends AbstractController
 
         $this->addFlash('danger', "Token invalide, Veuillez recréer un compte.");
         return $this->redirectToRoute('app_register');
+    }
+
+    /**
+     * @throws \Exception
+     */
+    private function generateToken()
+    {
+        return rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-'), '=');
+>>>>>>> Envoie mail de confirmation
     }
 }
