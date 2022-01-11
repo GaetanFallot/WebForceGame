@@ -33,6 +33,7 @@ class RegistrationController extends AbstractController
     ): Response
     {
         $user = new User();
+        $userToken = new UserToken();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -43,12 +44,24 @@ class RegistrationController extends AbstractController
                 $user,
                 $form->get('password')->getData()
             );
+            $user->setPassword($hashedPassword);
+            $user->setUserToken($this->generateToken());
+
+
 
             $user->setPassword($hashedPassword);
             $entityManager->persist($user);
 
             $entityManager->flush();
 
+            // generate a signed url and email it to the user
+            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                (new TemplatedEmail())
+                    ->from(new Address('eniscigtest@gmail.com', 'Staff'))
+                    ->to($user->getEmail())
+                    ->subject('Please Confirm your Email')
+                    ->htmlTemplate('registration/confirmation_email.html.twig')
+            );
             // do anything else you need here, like send an email
             $email = (new TemplatedEmail())
                 ->from('eniscigtest@gmail.com')
@@ -65,44 +78,20 @@ class RegistrationController extends AbstractController
                 ]);
             $notifyService->sendEmail($email);
 
-            return $this->redirectToRoute('register_confirmation');
-        }
-
-        return $this->render('registration/register.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-
-    #[Route('/inscription/confirmation', name: 'register_confirmation')]
-    public function registerConfirmation(): Response
-    {
-        return $this->render('registration/confirmation.html.twig');
-    }
-
-    #[Route('/inscription/verification-email/{token}', name: 'register_verification_email')]
-    public function registerVerificationEmail(
-        ?UserToken $userToken,
-        EntityManagerInterface $entityManager,
-        UserAuthenticatorInterface $userAuthenticator,
-        AppAuthenticator $authenticator,
-        Request $request
-    ): Response
-    {
-        if ($userToken && $userToken->isValid()) {
-            $userToken->setUsedAt(new DateTimeImmutable());
-            $user = $userToken->getUser();
-            $user->setStatus(User::STATUS_ACTIVE);
-
-            $entityManager->flush();
-
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
+            $this->mailer->sendEmail($user->getEmail(), $user->getUserToken());
         }
 
         $this->addFlash('danger', "Token invalide, Veuillez recréer un compte.");
         return $this->redirectToRoute('app_register');
+    }
+
+    private function generateToken(): string
+    {
+        return rtrim(strtr(base64_encode(random_bytes(32)), '+/-', '-_'), '=');
+    }
+        #[Route('/confirmer-mon-compte/{token}', name: 'confirm_account')]
+    public function confirmAccount(string $token): JsonResponse
+    {
+        return $this->json($token);
     }
 }
