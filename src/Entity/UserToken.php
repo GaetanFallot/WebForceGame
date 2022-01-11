@@ -3,7 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\UserTokenRepository;
+use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Uid\Uuid;
+
 
 #[ORM\Entity(repositoryClass: UserTokenRepository::class)]
 class UserToken
@@ -14,7 +19,7 @@ class UserToken
     private $id;
 
     #[ORM\OneToOne(inversedBy: 'userToken', targetEntity: User::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private $user;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -23,8 +28,20 @@ class UserToken
     #[ORM\Column(type: 'datetime_immutable')]
     private $expires_at;
 
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private $used_at;
+
+
+    public function __construct()
+    {
+        $this->token = Uuid::v6();
+    }
+
+    public function isValid(): bool
+    {
+        return $this->expires_at > new DatetimeImmutable()
+            && $this->used_at === null;
+    }
 
     public function getId(): ?int
     {
