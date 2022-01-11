@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\UserToken;
 use App\Form\RegistrationFormType;
 use App\Security\AppAuthenticator;
+use App\Service\Mailer;
 use App\Service\NotifyService;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
@@ -31,8 +32,6 @@ class RegistrationController extends AbstractController
     public function __construct(Mailer $mailer){
         $this->mailer = $mailer;
     }
-
->>>>>>> Envoie mail de confirmation
     #[Route('/register', name: 'app_register')]
     public function register(
         Request $request, 
@@ -115,6 +114,5 @@ class RegistrationController extends AbstractController
     private function generateToken()
     {
         return rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-'), '=');
->>>>>>> Envoie mail de confirmation
     }
 }
