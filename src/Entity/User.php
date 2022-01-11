@@ -22,6 +22,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
 
     const STATUS_ACTIVE = 'active';
+    const STATUS_INACTIVE = 'inactive';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
