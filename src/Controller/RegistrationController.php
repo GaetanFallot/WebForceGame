@@ -18,6 +18,12 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
+    private $mailer;
+
+    public function __construct(Mailer $mailer) {
+        $this->mailer = $mailer;
+
+    }
     private Mailer $mailer;
 
     public function __construct(Mailer $mailer){
@@ -44,6 +50,11 @@ class RegistrationController extends AbstractController
                 $user,
                 $form->get('password')->getData()
             );
+            dd($hashedPassword);
+            $user->setPassword($hashedPassword);
+            $user->setUserToken($this->generateToken());
+
+
 
             $user->setPassword($hashedPassword);
             $user->setUserToken($this->generateToken());
@@ -52,20 +63,33 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
             $this->addFlash('success', 'Inscription réussie');
 
+            // generate a signed url and email it to the user
+            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+                (new TemplatedEmail())
+                    ->from(new Address('eniscigtest@gmail.com', 'Staff'))
+                    ->to($user->getEmail())
+                    ->subject('Please Confirm your Email')
+                    ->htmlTemplate('registration/confirmation_email.html.twig')
+            );
             // do anything else you need here, like send an email
             $this->mailer->sendEmail($user->getEmail(), $user->getUserToken());
 
-            return $userAuthenticator->authenticateUser(
-                $user,
-                $authenticator,
-                $request
-            );
+            $this->mailer->sendEmail($user->getEmail(), $user->getUserToken());
         }
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
+    #[Route('/confirmAccount/{token}', name: 'confirm_account')]
+    public function confirmAccount(string $token) {
+        return $this->json($token);
+
+    }
+
+    private function generateToken(): string
+    {
+        return rtrim(strtr(base64_encode(random_bytes(32)), '+/-', '-_'), '=');
     #[Route('/confirmer-mon-compte/{token}', name: 'confirm_account')]
     public function confirmAccount(string $token): JsonResponse
     {
