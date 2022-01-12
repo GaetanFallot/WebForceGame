@@ -35,3 +35,12 @@
     align-items: center;
 }
 
+/* *************CHARACTERS LIST********* */
+
+
+
+.character_profession
+{
+    display: flex;
+    flex-direction: column-reverse;
+}

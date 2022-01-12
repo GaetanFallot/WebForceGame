@@ -124,7 +124,7 @@ class Characters implements EntityImageInterface
 
     public function getImageSrc(): ?string
     {
-        return self::IMAGE_DIRECTORY.$this->image;
+        return self::IMAGE_DIRECTORY."/".$this->image;
     }
 
 
