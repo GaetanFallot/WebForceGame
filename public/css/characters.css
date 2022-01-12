@@ -1,0 +1,46 @@
+#display-character-image {
+    width: 150px;
+}
+
+.container-grimoire {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background-image: url('../image/ecorce.png');
+    justify-content: center;
+
+}
+
+/* .grimoire img{
+    width: 1200px;
+    position: absolute;
+} */
+
+.grimoire{
+    width: 1200px;
+    height: 60em;
+    background-image: url('../image/grimoire.png');
+    background-repeat: no-repeat;
+    background-size: 1200px;
+    background-position: 0% 75%;
+}
+
+
+    
+.form_container{
+    display: flex;
+    height: 800px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* *************CHARACTERS LIST********* */
+
+
+
+.character_profession
+{
+    display: flex;
+    flex-direction: column-reverse;
+}

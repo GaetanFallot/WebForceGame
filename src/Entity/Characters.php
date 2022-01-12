@@ -2,53 +2,91 @@
 
 namespace App\Entity;
 
+use App\Entity\Interfaces\EntityImageInterface;
 use App\Repository\CharactersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
+#[UniqueEntity(fields: ['name'], message: 'Un personnage existe déjà avec cet nom')]
 #[ORM\Entity(repositoryClass: CharactersRepository::class)]
-class Characters
+class Characters implements EntityImageInterface
 {
+
+    const ABILITIES_COEFF = 3;
+    const VITALITY_COEFF = 5;
+    const HP_MAX = 50;
+
+    const IMAGE_DIRECTORY = "/image/character";
+
+    const MAX_TOTAL_ABILITIES = 5;
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 100)]
+    #[ORM\Column(type: 'string', length: 100, unique: true)]
+    #[Assert\NotBlank]
     private $name;
-
+    
     #[ORM\Column(type: 'string', length: 255)]
+    // #[Assert\NotBlank] J'arrive pas à obliger une image ici
     private $image;
 
     #[ORM\Column(type: 'integer')]
-    private $hp_max;
+    private int $hp ;
 
     #[ORM\Column(type: 'integer')]
-    private $hp;
+    #[Assert\NotBlank]
+    private int $str = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $str;
+    #[Assert\NotBlank]
+    private int $con = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $con;
+    #[Assert\NotBlank]
+    private int $dex = 0;
 
     #[ORM\Column(type: 'integer')]
-    private $dex;
+    #[Assert\NotBlank]
+    private int $intel = 0 ;
 
     #[ORM\Column(type: 'integer')]
-    private $intel;
-
-    #[ORM\Column(type: 'integer')]
-    private $level;
+    private int $level = 1;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $status;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $profession;
+    private ?string $status = 'alive';
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'characters')]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
+
+    #[ORM\ManyToOne(targetEntity: Profession::class, inversedBy: 'characters')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $profession;
+
+    #[ORM\Column(type: 'integer')]
+    #[ORM\JoinColumn(nullable: false)]
+    private int $experience = 0;
+
+    #[ORM\ManyToMany(targetEntity: Combat::class, mappedBy: 'characters')]
+    private $combats;
+
+    #[ORM\OneToMany(mappedBy: 'vainqueur', targetEntity: Combat::class)]
+    private $combatsWon;
+
+
+
+    public function __construct()
+    {
+        $this->combats = new ArrayCollection();
+        $this->combatsWon = new ArrayCollection();
+    }
+
 
 
     public function getId(): ?int
@@ -80,16 +118,16 @@ class Characters
         return $this;
     }
 
-    public function getHpMax(): ?int
+
+    public function getImageSrc(): ?string
     {
-        return $this->hp_max;
+        return self::IMAGE_DIRECTORY."/".$this->image;
     }
 
-    public function setHpMax(int $hp_max): self
-    {
-        $this->hp_max = $hp_max;
 
-        return $this;
+    public function getHpMax(): ?int
+    {
+        return  $this->getCon()*self::VITALITY_COEFF+self::HP_MAX;
     }
 
     public function getHp(): ?int
@@ -176,17 +214,6 @@ class Characters
         return $this;
     }
 
-    public function getProfession(): ?string
-    {
-        return $this->profession;
-    }
-
-    public function setProfession(string $profession): self
-    {
-        $this->profession = $profession;
-
-        return $this;
-    }
 
     public function getUser(): ?User
     {
@@ -199,4 +226,114 @@ class Characters
 
         return $this;
     }
+
+    public function getProfession(): ?Profession
+    {
+        return $this->profession;
+    }
+
+    public function setProfession(?Profession $profession): self
+    {
+        $this->profession = $profession;
+
+        return $this;
+    }
+
+    public function getAttContact(): int
+    {
+        return $this->str*self::ABILITIES_COEFF;
+    }
+
+    public function getAttDistance(): int
+    {
+        return $this->dex*self::ABILITIES_COEFF;
+    }
+
+    public function getAttMagie(): int
+    {
+        return $this->intel*self::ABILITIES_COEFF;
+    }
+
+    #[Assert\EqualTo(value: self::MAX_TOTAL_ABILITIES,)]
+    public function getTotalAbilities(): int
+    {
+        
+        return $this->getStr()+$this->getCon()+$this->getDex()+$this->getIntel();
+    }
+
+    public function getImageDirectory(): string
+    {
+        return self::IMAGE_DIRECTORY;
+    }
+
+    public function getExperience(): ?string
+    {
+        return $this->experience;
+    }
+
+    public function setExperience(string $experience): self
+    {
+        $this->experience = $experience;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Combat[]
+     */
+    public function getCombats(): Collection
+    {
+        return $this->combats;
+    }
+
+    public function addCombat(Combat $combat): self
+    {
+        if (!$this->combats->contains($combat)) {
+            $this->combats[] = $combat;
+            $combat->addCharacter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCombat(Combat $combat): self
+    {
+        if ($this->combats->removeElement($combat)) {
+            $combat->removeCharacter($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Combat[]
+     */
+    public function getCombatsWon(): Collection
+    {
+        return $this->combatsWon;
+    }
+
+    public function addCombatsWon(Combat $combatsWon): self
+    {
+        if (!$this->combatsWon->contains($combatsWon)) {
+            $this->combatsWon[] = $combatsWon;
+            $combatsWon->setVainqueur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCombatsWon(Combat $combatsWon): self
+    {
+        if ($this->combatsWon->removeElement($combatsWon)) {
+            // set the owning side to null (unless already changed)
+            if ($combatsWon->getVainqueur() === $this) {
+                $combatsWon->setVainqueur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    
 }
