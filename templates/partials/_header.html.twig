@@ -18,6 +18,12 @@
         <div class="connexion">
             {% if app.user %}
                 <a href="{{ path('app_logout') }}">Déconnexion</a>
+                <a class="nav-link" href="{{ path('createCharacters') }}">Création personnage</a>
+                
+                {% if app.user.role[0] == "ROLE_ADMIN" %}
+                <p>Code bien</p>
+                {% endif %}
+                
             {% else %}
                 <a href="{{ path('app_login') }}" class="co">Connexion</a>
                 <a href="{{ path('app_register') }}">Inscription</a>
@@ -25,5 +31,4 @@
         </div>
     </div>
     <a class="nav-link" href="{{ path('createCharacters') }}">Création perso test</a>
-    <a class="nav-link" href="{{ path('app_register') }}">Création user test</a>
 </header>
