@@ -10,57 +10,61 @@
 {% block body %}
 <div class="container-grimoire">
     <div class="grimoire">
-        <img src="{{ asset('image/grimoire.png') }}" alt="grimoire" />
+        {# <img src="{{ asset('image/grimoire.png') }}" alt="grimoire" /> #}
     
+        <div class="form_container">        
 
-    
-        {{form_errors(form)}}
+            <div class="form">
 
-        <div class="form">
-        {{form_start(form)}}
+            {{form_errors(form)}}
+            
+            {{form_start(form)}}
 
-            <div class="main_character">
-                <div class="character_name">
-                    {{form_row(form.name)}}
+                <div class="main_character">
+                    <div class="character_name">
+                        {{form_row(form.name)}}
+                    </div>
+                    <div class="character_img">
+                        {{form_row(form.image)}}
+                    </div>
                 </div>
-                <div class="character_img">
-                    {{form_row(form.image)}}
+
+                <div class="character_capacity">
+
+                    <span class="capacity capacity_str">{{form_row(form.str)}}</span>
+
+                    <span class="capacity capacity_con">{{form_row(form.con)}}</span>
+
+                    <span class="capacity capacity_dex">{{form_row(form.dex)}}</span>
+
+                    <span class="capacity capacity_intel">{{form_row(form.intel)}}</span>
+
                 </div>
+
+                <div class="character_profession">
+                    {{form_row(form.profession)}}
+                </div>
+
+                <button type="submit" class="button_form_createCharacters"> Créer </button>
+
+            {{form_end(form)}}
             </div>
 
-            <div class="character_capacity">
+            <div class="fiche">
 
-                <span class="capacity capacity_str">{{form_row(form.str)}}</span>
+                <div>nom :<span id="display-character-name"></span></div>
+                <div>str :<span id="display-character-str"></span></div>
+                <div>con :<span id="display-character-con"></span></div>
+                <div>dex :<span id="display-character-dex"></span></div>
+                <div>intel :<span id="display-character-intel"></span></div>
+                <div>Profession:<span id="display-character-profession"></span></div>
+                <div>IMAGE:<img id="display-character-image" src="" alt=""></div>
 
-                <span class="capacity capacity_con">{{form_row(form.con)}}</span>
-
-                <span class="capacity capacity_dex">{{form_row(form.dex)}}</span>
-
-                <span class="capacity capacity_intel">{{form_row(form.intel)}}</span>
 
             </div>
-
-            <div class="character_profession">
-                {{form_row(form.profession)}}
-            </div>
-
-            <button type="submit" class="button_form_createCharacters"> Créer </button>
-
-        {{form_end(form)}}
-        </div>
-
-        <div class="fiche">
-
-            <div>nom :<span id="display-character-name"></span></div>
-            <div>str :<span id="display-character-str"></span></div>
-            <div>con :<span id="display-character-con"></span></div>
-            <div>dex :<span id="display-character-dex"></span></div>
-            <div>intel :<span id="display-character-intel"></span></div>
-            <div>Profession:<span id="display-character-profession"></span></div>
-            <div>IMAGE:<img id="display-character-image" src="" alt=""></div>
-
 
         </div>
+        
     </div>
 </div>
 {% endblock %}
