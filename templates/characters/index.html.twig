@@ -9,22 +9,32 @@
 <div class="form">
 {{form_start(form)}}
 
-    {{form_row(form.name)}}
+    <div class="main_character">
+        <div class="character_name"> 
+            {{form_row(form.name)}}
+        </div>
+        <div class="character_img">
+            {{form_row(form.image)}}
+        </div>
+    </div>
+
+    <div class="character_capacity">
+        
+        <span class="capacity capacity_str">{{form_row(form.str)}}</span>
+        
+        <span class="capacity capacity_con">{{form_row(form.con)}}</span>
+        
+        <span class="capacity capacity_dex">{{form_row(form.dex)}}</span>
+
+        <span class="capacity capacity_intel">{{form_row(form.intel)}}</span>
     
-    {{form_row(form.image)}}
+    </div>
 
-    {{form_row(form.str)}}
+    <div class="character_profession">
+        {{form_row(form.profession)}}
+    </div>
 
-    {{form_row(form.con)}}
-
-    {{form_row(form.dex)}}
-
-    {{form_row(form.intel)}}
-    
-    {{form_row(form.profession)}}
-
-
-    <button type="submit" class="btn btn_primary"> Créer </button>
+    <button type="submit" class="button_form_createCharacters"> Créer </button>
     
 {{form_end(form)}}
 </div>
