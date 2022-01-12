@@ -17,8 +17,8 @@ main {
     width: 1200px;
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: space-between; */
-    gap: 0px 100px ;
+    justify-content: space-between;
+    gap: 0px 70px ;
     
 }
 
@@ -96,6 +96,7 @@ main {
 
   header {
     height: 150px;
+    width: 100%;
     background-color: #dab47c;
     color: black;
     font-family: 'Special Elite', cursive;
