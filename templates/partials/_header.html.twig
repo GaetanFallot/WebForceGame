@@ -14,9 +14,13 @@
             <a href="#">Contact</a>
         </div>
 
-        <div class="connexion"> 
-            <a href="#" class="co">Connexion</a>
-            <a href="#">Inscription</a>
+        <div class="connexion">
+            {% if app.user %}
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
+            {% else %}
+                <a href="{{ path('app_login') }}" class="co">Connexion</a>
+                <a href="{{ path('app_register') }}">Inscription</a>
+            {% endif %}
         </div>
     </div>
     <a class="nav-link" href="{{ path('createCharacters') }}">Création perso test</a>

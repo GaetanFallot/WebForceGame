@@ -21,8 +21,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
 
 
-    const STATUS_ACTIVE = 'active';
-    const STATUS_INACTIVE = 'inactive';
+    const STATUS_ACTIVE = 'Active';
+    const STATUS_INACTIVE = 'Inactive';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -71,7 +71,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->characters = new ArrayCollection();
         $this->role = ['ROLE_USER'];
-        $this->status = false;
     }
 
     public function getId(): ?int
@@ -246,7 +245,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getRoles(): array
     {
-        $roles = $this->roles;
+        $roles = $this->role;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
