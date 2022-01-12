@@ -16,4 +16,7 @@ class DashboardController extends AbstractController
 
         ]);
     }
+
+    
+    // requete utilisateur est invité et pas encore répondu si oui afficher accepter ou refuser
 }

@@ -61,14 +61,6 @@ class CharactersType extends AbstractType
                 
                 'choice_label' => 'profession_name',
                 ])
-                
-            // test pour voir si ça va en db
-            // ->add('user')
-            ->add('user', EntityType::class, [
-                'class' => User::class,
-
-                'choice_label' => 'user_name',
-                ])
             ;
         }
 
