@@ -33,8 +33,11 @@ class CharactersController extends AbstractController
                 $fileUploader->upload($characters, $file);
             }
             $characters->setUser($this->getUser());
+            $characters->setHp($characters->getHpMax());
             $manager -> persist($characters);
             $manager->flush();
+
+            // return $this->redirectToRoute()  à mettre sur la route de ou sera stocké son personnage
         }
 
         return $this->render('characters/index.html.twig', [

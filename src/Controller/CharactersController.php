@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CharactersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,5 +18,28 @@ class CharactersController extends AbstractController
     }
 
     // ici faire characters liste
+
+    #[Route('/charactersList', name: 'charactersList')]
+    public function getCharactersList(
+        CharactersRepository $charactersRepository
+    ): Response 
+    {
+        $characters = $charactersRepository->findAll();
         
+        return $this->render('base/charactersList.html.twig', [
+            'characters' => $characters
+        ]);
+    }
+
+    #[Route('/charactersUser', name: 'charactersUser')]
+    public function getUserCharacters(
+        CharactersRepository $charactersRepository
+    ): Response 
+    {
+        $characters = $charactersRepository->findAll();
+        
+        return $this->render('base/charactersList.html.twig', [
+            'characters' => $characters
+        ]);
+    }
 }
