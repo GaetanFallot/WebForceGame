@@ -1,0 +1,19 @@
+.main_inscription {
+    width: 100%;
+    display: flex;
+   justify-content: center;
+    
+}
+
+.container_inscription {
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+
+.inscription{
+    width:100px;
+}
