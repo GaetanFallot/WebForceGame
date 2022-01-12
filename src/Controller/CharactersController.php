@@ -30,4 +30,16 @@ class CharactersController extends AbstractController
             'characters' => $characters
         ]);
     }
+
+    #[Route('/charactersUser', name: 'charactersUser')]
+    public function getUserCharacters(
+        CharactersRepository $charactersRepository
+    ): Response 
+    {
+        $characters = $charactersRepository->findAll();
+        
+        return $this->render('base/charactersList.html.twig', [
+            'characters' => $characters
+        ]);
+    }
 }
