@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Liste de vos personnages
+{% endblock %}
+
+{% block body %}
+	
+	<main>
+
+		<h1>Liste de vos personnages</h1>
+		<div class="container-main">
+
+	
+		
+			{% for character in app.user.characters %}
+			
+				<div class="container-card">
+					<div class="card">
+						
+					<div class="card__face card__face--front">
+							<img class="characters_picture" src="{{ character.imageSrc }}"  alt="dé {{ character.profession.professionName }}" /></br>
+							<h3 class="card__face">{{ character.name }}</h3>
+						
+					</div>
+
+					<div class="card__face card__face--back pile">
+						<h3>{{ character.name }}</h3></br>
+						<div class="character_profession">
+							<p>{{ character.profession.professionName }}</p></br>
+							<div>
+								<img class="character_picture" src="{{ character.profession.imageSrc }}"  alt="dé {{ character.profession.professionName }}" /></br>
+							</div>
+						</div>	
+						<p>{{ character.dex }}</p></div>
+					</div>
+				</div>
+			{% endfor %}
+	</main>		
+{% endblock %}
