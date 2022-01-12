@@ -10,13 +10,16 @@
 {% block body %}
 <div class="container-grimoire">
     <div class="grimoire">
-        <img src="{{ asset('image/grimoire.png') }}" alt="grimoire" />
+        {# <img src="{{ asset('image/grimoire.png') }}" alt="grimoire" /> #}
     
 
     
-        {{form_errors(form)}}
+        
 
         <div class="form">
+
+        {{form_errors(form)}}
+        
         {{form_start(form)}}
 
             <div class="main_character">
