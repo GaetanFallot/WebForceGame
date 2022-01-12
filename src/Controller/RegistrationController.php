@@ -32,6 +32,9 @@ class RegistrationController extends AbstractController
         NotifyService $notifyService
     ): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('home');
+        }
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
