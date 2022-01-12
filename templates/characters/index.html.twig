@@ -2,6 +2,11 @@
 
 {% block title %}Création de personnage{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/characters.css') }}">
+{% endblock %}
+
 {% block body %}
 
 {{form_errors(form)}}
@@ -10,7 +15,7 @@
 {{form_start(form)}}
 
     <div class="main_character">
-        <div class="character_name"> 
+        <div class="character_name">
             {{form_row(form.name)}}
         </div>
         <div class="character_img">
@@ -19,15 +24,15 @@
     </div>
 
     <div class="character_capacity">
-        
+
         <span class="capacity capacity_str">{{form_row(form.str)}}</span>
-        
+
         <span class="capacity capacity_con">{{form_row(form.con)}}</span>
-        
+
         <span class="capacity capacity_dex">{{form_row(form.dex)}}</span>
 
         <span class="capacity capacity_intel">{{form_row(form.intel)}}</span>
-    
+
     </div>
 
     <div class="character_profession">
@@ -35,7 +40,7 @@
     </div>
 
     <button type="submit" class="button_form_createCharacters"> Créer </button>
-    
+
 {{form_end(form)}}
 </div>
 
@@ -47,6 +52,7 @@
     <div>dex :<span id="display-character-dex"></span></div>
     <div>intel :<span id="display-character-intel"></span></div>
     <div>Profession:<span id="display-character-profession"></span></div>
+    <div>IMAGE:<img id="display-character-image" src="" alt=""></div>
 
 
 </div>

@@ -8,23 +8,22 @@ cards.forEach(card => {
 
 
   $(document).ready(function() {
-      let formData = {};
       $("form input, form select").on("input",function(){
         $("form input, form select").each(function(){
             const name = $(this).attr("name").replace("characters[","").replace("]","")
-            const value = $(this).val()
+            let value = $(this).val()
             if (name === "profession") {
-                console.log($(this).text())
-                value = ""
+              value = $('select[name="characters[profession]"] option[value='+value+']').text()
             }
-            
-            
-            formData[name] = value
+          $("#display-character-"+ name).text(value)
         })
-        for(const name in formData){
-            const value = formData[name]
-            $("#display-character-"+ name).text(value)
-
-        }
       });
+
+      const imgInp = $('input[name="characters[image]"]')[0]
+      imgInp.onchange = () => {
+        const [file] = imgInp.files
+        if (file) {
+          $('#display-character-image')[0].src = URL.createObjectURL(file)
+        }
+      }
   })
