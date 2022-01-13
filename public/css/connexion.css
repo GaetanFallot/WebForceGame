@@ -1,51 +1,49 @@
-
 body{
     background: #d8dcdd;
+    margin: 0px;
+    padding: 0px;
 }
-.inscription{
+.connexion{
     width:600px;
+    padding: 40px;
     margin:0 auto;
-    /*margin-top:10%;*/
 }
 /* Les formes des bordures*/
 form {
     width:100%;
-    padding: 40px;
-    border: 1px solid #0c0b0b;
+    padding: 30px;
+    border: 1px solid #140d0d;
     background: #fff;
-    box-shadow: 0 0 20px 0 rgba(219, 143, 143, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-.inscription  h2{
+.connexion  h2{
     width: 35%;
     margin: 0 auto;
     padding-bottom: 10px;
-    text-align: center;
-    
 }
 
 /* Les largeurs des inputs */
-input[type=text], input[type=password], input[type=email]{
+input[type=text], input[type=password] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid rgb(41, 39, 39);
+    border: 1px solid #ccc;
     box-sizing: border-box;
 }
 
 /* Le button de validation */
 button[type=submit] {
-    background-color: #a3a59b;
-    color: rgb(12, 11, 11);
+    background-color: #c2c4bb;
+    color: rgb(10, 9, 9);
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     cursor: pointer;
     width: 100%;
-
 }
 button[type=submit]:hover {
-    background-color: rgb(190, 186, 186);
+    background-color: white;
     color: #0c0c0c;
-    border: 1px solid crimson   ;
+    border: 1px solid #af7c53;
 }
