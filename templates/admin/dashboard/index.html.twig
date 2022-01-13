@@ -4,4 +4,18 @@
 
 {% block body %}
     <h1>Espace Admin</h1>
+
+
+
+    <h3>Modération</h3>
+    <a href={{ path('delete_user') }}><button type="button" class="btn btn-primary"> Supprimer un utilisateur</button></a>
+
+    <br>
+    <button type="button" class="btn btn-primary">Bloquer un utilisateur</button>
+
+    <h3>Messagerie</h3>
+        <button type="button" class="btn btn-primary">Envoyer un mail a tout les utilisateurs</button>
+
+
+
 {% endblock %}
