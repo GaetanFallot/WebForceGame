@@ -58,7 +58,6 @@ class CharactersController extends AbstractController
         // $user = $this->getUser();
         // $characters = $user->getCharacters()->toArray();
             
-        // a changer => app.user dans twig
         return $this->render('characters/user/user_characters.html.twig'
         // , [
         //     'characters' => $characters

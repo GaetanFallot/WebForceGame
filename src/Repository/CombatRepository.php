@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Combat;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +18,20 @@ class CombatRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Combat::class);
+    }
+
+    public function findUserCombats(User $user): array
+    {
+        return $this
+            ->createQueryBuilder('combats')
+            ->leftJoin('combats.characters', 'characters')
+            ->andWhere('characters.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult()
+        ;
+        
+        
     }
 
     // /**
