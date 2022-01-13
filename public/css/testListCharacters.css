@@ -1,0 +1,36 @@
+
+/* css pour charactersList */
+
+/* gestion de l'interface et alignement  */
+
+.container-main2 {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: flex-end; */
+    gap: 0px 100px;
+}
+.characters_picture {
+    width: 80px;
+    position: relative;
+    left: 30%;
+}
+
+/* gestion face arriere des cartes */
+
+.character_profession {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.character_profession img {
+    width: 75px;
+}
+
+.character_hp_profession_name {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
