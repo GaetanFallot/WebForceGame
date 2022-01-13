@@ -1,7 +1,9 @@
 .main_inscription {
     width: 100%;
+    
     display: flex;
-   justify-content: center;
+    justify-content: center;
+    font-family: 'Milonga', cursive;
     
 }
 
@@ -9,11 +11,78 @@
     width: 1200px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
 
 }
 
 
 .inscription{
-    width:100px;
+    width:50%;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
 }
+
+h1 {
+    font-size: 50px;
+}
+
+.a1 {
+    margin: 40px 0;
+}
+
+/* Les formes des bordures*/
+form {
+    width:100%;
+    padding: 40px;
+    border: 1px solid #0c0b0b;
+    border-radius: 15px;
+    box-shadow: 15px 15px 7px rgba(110, 110, 110, 0.24);
+    background: #dab47c;
+    /* box-shadow: 0 0 20px 0 rgba(219, 143, 143, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24); */
+}
+.inscription  h2{
+    width: 35%;
+    padding-bottom: 10px;
+    text-align: center;
+    
+
+}
+
+/* Les largeurs des inputs */
+input[type=text], input[type=password], input[type=email]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid rgb(41, 39, 39);
+    border-radius: 15px;
+    box-sizing: border-box;
+    box-shadow: inset 8px 8px 7px rgba(110, 110, 110, 0.24);
+    
+}
+
+/* Le button de validation */
+button[type=submit] {
+    background-color: #99b051;
+    color: rgb(12, 11, 11);
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: 1px solid gray;
+    border-radius: 15px;
+    cursor: pointer;
+    width: 100%;
+    box-shadow: 15px 15px 7px rgba(110, 110, 110, 0.24);
+    font-family: 'Milonga', cursive;
+    font-size: 20px;
+
+}
+button[type=submit]:hover {
+    background-color: #8e5232;
+    color: #0c0c0c;
+    border: 1px solid rgb(168, 56, 22)   ;
+}
+
+
