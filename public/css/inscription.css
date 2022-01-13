@@ -1,61 +1,12 @@
 
-body{
-    background: #d8dcdd;
+.main_inscription {
+    font-family: 'Milonga', cursive;
 }
+
 .inscription{
     width:600px;
     margin:0 auto;
     /*margin-top:10%;*/
-}
-/* Les formes des bordures*/
-form {
-    width:100%;
-    padding: 40px;
-    border: 1px solid #0c0b0b;
-    background: #fff;
-    box-shadow: 0 0 20px 0 rgba(219, 143, 143, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-.inscription  h2{
-    width: 35%;
-    margin: 0 auto;
-    padding-bottom: 10px;
-    text-align: center;
-    
-}
-
-/* Les largeurs des inputs */
-input[type=text], input[type=password], input[type=email]{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid rgb(41, 39, 39);
-    box-sizing: border-box;
-}
-
-/* Le button de validation */
-button[type=submit] {
-    background-color: #a3a59b;
-    color: rgb(12, 11, 11);
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-
-}
-button[type=submit]:hover {
-    background-color: rgb(190, 186, 186);
-    color: #0c0c0c;
-    border: 1px solid crimson   ;
-}
-
-h1 {
-    font-size: 50px;
-}
-
-.a1 {
-    margin: 40px 0;
 }
 
 /* Les formes des bordures*/
@@ -72,8 +23,6 @@ form {
     width: 35%;
     padding-bottom: 10px;
     text-align: center;
-    
-
 }
 
 /* Les largeurs des inputs */
