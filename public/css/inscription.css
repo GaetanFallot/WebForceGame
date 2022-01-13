@@ -7,11 +7,37 @@
     
 }
 
+.container_inscription img {
+    width: 150px;
+    height: 150px;
+    
+    
+}
+
+.bleu {
+    position: absolute;
+    left: 30px;
+    top: 350px;
+
+}
+
+.rouge {
+    position: absolute;
+    right: 30px;
+}
+
+.violet {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+}
+
 .container_inscription {
-    width: 1200px;
+    width: 900px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 
 }
 

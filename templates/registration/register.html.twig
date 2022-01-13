@@ -12,8 +12,15 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
     <div class="main_inscription">
+
+        
         <div class="container_inscription">
+            <img src="{{ asset('image/de_bleu.png') }}" alt="dé bleu" class="bleu" />
+            <img src="{{ asset('image/de_rouge.png') }}" alt="dé rouge" class="rouge" />
+            <img src="{{ asset('image/de_violet.png') }}" alt="dé violet" class="violet"/>
+
             <div class= "inscription">
+
                 <h1> Inscription</h1>
                 <div class="a1">
                     {{ form_start(form) }}

@@ -8,6 +8,8 @@
     display: flex;
     background-image: url('../image/ecorce.png');
     justify-content: center;
+    font-family: 'Special Elite', cursive;
+    
 
 }
 
@@ -28,6 +30,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    font-size: 20px;
 }
 
 .form {
@@ -37,7 +40,120 @@
 
 .fiche {
     width: 30%;
+    height: 530px;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
+/* #display-character-image {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+} */
+
+.name {
+    position: absolute;
+    top: 50px;
+    right: 0px;
+}
+
+.str {
+    position: absolute;
+    top: 200px;
+    left: -15px;
+    font-size: 16px;
+    
+}
+
+.con {
+    position: absolute;
+    top: 200px;
+    left: 85px;
+    font-size: 16px;
+}
+
+.dex {
+    position: absolute;
+    top: 200px;
+    left: 170px;
+    font-size: 16px;
+}
+
+.intel {
+    position: absolute;
+    top: 200px;
+    left: 255px;
+    font-size: 16px;
+}
+
+.profession {
+    position: absolute;
+    top: 300px;
+}
+
+form {
+    width:100%;
+    /* padding: 40px; */
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    background-color: rgba(128, 128, 128, 0);
+    display: inline-block;
+    border: 1px solid rgba(41, 39, 39, 0.226);
+    border-radius: 15px;
+    
+    
+    
+}
+
+span {
+    width: 100%;
+    margin: 4px 0;
+    padding: 12px 20px;
+}
+
+input[type=number] {
+    background-color: rgba(128, 128, 128, 0);
+    /* border: 1px solid rgba(41, 39, 39, 0.226);
+    border-radius: 15px; */
+    border: none;
+}
+
+input[type=file] {
+    
+}
+
+select {
+    background-color: rgba(128, 128, 128, 0);
+    border: 1px solid rgba(41, 39, 39, 0.226);
+    border-radius: 15px;
+}
+
+
+
+button[type=submit] {
+    background-color: #98b05100;
+    
+    color: rgb(12, 11, 11);
+    padding: 14px 20px;
+    margin: 8px 0;
+    /* border: 1px solid rgba(41, 39, 39, 0.226);
+    border-radius: 15px; */
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-family: 'Special Elite', cursive;
+    font-size: 40px;
+
+}
+
+button[type=submit]:hover {
+    background-color: #dab47c;
+    color: #0c0c0c;
+    border-radius: 15px;
+    /* border: 1px solid rgb(168, 56, 22); */
+}
