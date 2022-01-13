@@ -9,7 +9,7 @@
     <div class="headerD">
         <div class="nav-barre">
             <a href="{{ path('home') }}">Accueil</a>
-            <a href="{{ path('charactersList') }}"> Test liste perso</a>
+            <a href="{{ path('charactersList') }}"> Liste personnages</a>
             <a href="#">A propos</a>
             <a href="#">Forum</a>
             <a href="#">Contact</a>
@@ -23,7 +23,7 @@
                 <a class="nav-link" href="{{ path('user_combat_list') }}">Mes combats</a>
                 
                 {% if app.user.role[0] == "ROLE_ADMIN" %}
-                    <p>Code bien</p>
+                    <p></p>
                 {% endif %}
                 
             {% else %}
