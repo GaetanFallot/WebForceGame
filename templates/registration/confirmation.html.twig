@@ -1,8 +1,12 @@
 {% extends "base.html.twig" %}
 
 {% block title "Confirmation" %}
-
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('css/inscription.css') }}">
+{% endblock %}
 {% block body %}
+<div class='confi_container'>
     <h1>Merci pour votre inscription !</h1>
 
     <p>
@@ -10,4 +14,5 @@
         Veuillez cliquer sur le lien que nous vous avons envoyé
         par email, afin de confirmer votre adresse.
     </p>
+</div>
 {% endblock %}

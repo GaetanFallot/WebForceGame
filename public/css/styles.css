@@ -4,6 +4,15 @@
     box-sizing: border-box;
 
 }
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+.container {
+
+}
+
 /*................PAGE HOME..................;*/
 main {
     width: 100%;
@@ -151,6 +160,13 @@ header a{
 
   /*...............FOOTER...............*/
 
+
+
+
+
+
+
+
   footer {
     width: 100%;
     height: 250px;
@@ -160,6 +176,17 @@ header a{
     align-items: center;
     font-family: 'Special Elite', cursive;
     
+}
+
+.content {
+  min-height: 57.2%;
+}
+.content-inside {
+  /* padding-bottom: 250px; */
+}
+.footer {
+  /* height: 250px; */
+  /* margin-top: -125px; */
 }
 
 .footer-container {

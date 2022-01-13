@@ -8,11 +8,18 @@
 <div class="">
  <h1>Zone de Combat</h1>
 
-    {% for combat in combats %}
+		{% if combats is empty%}
+            <p> 
+                Aucun Combat prévu ! Cliquez <a href="{{path('charactersList')}}">ici</a> pour accèder à la liste des personnages de tout les joueurs du site.
+            </p>
+            
+            {% for combat in combats %}
 
-            {{dump(combat)}}
-            {{dump(combat.characters)}}
-        
-    {% endfor %}
+                {{dump(combat)}}
+                {{dump(combat.characters)}}
+            
+            {% endfor %}
+		{% endif %}
+
 </div>
 {% endblock %}

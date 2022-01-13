@@ -114,3 +114,10 @@ button[type=submit]:hover {
 
 
 
+/* gestion de la page confirmation */
+
+
+.confi_container {
+    
+    font-family: 'Milonga', cursive;
+}
