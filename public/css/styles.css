@@ -9,9 +9,7 @@ html, body {
     margin: 0;
   }
 
-.container {
 
-}
 
 /*................PAGE HOME..................;*/
 main {
@@ -181,13 +179,7 @@ header a{
 .content {
   min-height: 57.2%;
 }
-.content-inside {
-  /* padding-bottom: 250px; */
-}
-.footer {
-  /* height: 250px; */
-  /* margin-top: -125px; */
-}
+
 
 .footer-container {
     width: 1200px;
