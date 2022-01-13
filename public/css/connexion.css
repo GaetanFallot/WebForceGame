@@ -1,24 +1,31 @@
-.main_inscription {
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
+.container_global {
+    font-family: 'Milonga', cursive;
     display: flex;
     justify-content: center;
-    font-family: 'Milonga', cursive;
-    
 }
 
-.container_inscription img {
+.container_connexion {
+    width: 900px;
+    position: relative;
+}
+
+
+.connexion1{
+    padding: 100px;
+    width: 600px;
+    margin:0 auto;
+    
+}
+/* MISE EN PLACE DES IMAGES */
+.container_connexion img {
     width: 150px;
     height: 150px;
-    
-    
 }
 
 .bleu {
     position: absolute;
-    left: 30px;
-    top: 350px;
+    right: 0px;
+    bottom: 0px;
 
 }
 
@@ -29,35 +36,53 @@
 
 .violet {
     position: absolute;
-    right: 30px;
-    bottom: 30px;
+    left: 30px;
+    bottom: 250px;
 }
 
-.container_inscription {
-    width: 900px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
+/* Les formes des bordures*/
+form {
+    width:75%;
+    padding: 40px;
+    border: 1px solid #140d0d;
+    background: #fff;
+    box-shadow: 0 0 20px 0 rgba(219,143,143, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.connexion1  h1{
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Les largeurs des inputs */
+input[type=text], input[type=password], input[type=email]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid rgb(41, 39, 39);
+    box-sizing: border-box;
+}
+
+/* Le button de validation */
+button[type=submit] {
+    background-color: #a3a59b;
+    color: rgb(12, 11, 11);
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
 
 }
 
-
-.inscription{
-    width:50%;
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+button[type=submit]:hover {
+    background-color: rgb(190, 186, 186);
+    color: #0c0c0c;
+    border: 1px solid crimson   ;
 }
 
-h1 {
-    font-size: 40px;
-}
-
-.a1 {
-    margin: 30px 0;
+.conexion_menu {
+    margin: 40px 0;
 }
 
 /* Les formes des bordures*/
@@ -70,13 +95,7 @@ form {
     background: #dab47c;
     /* box-shadow: 0 0 20px 0 rgba(219, 143, 143, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24); */
 }
-.inscription  h2{
-    width: 35%;
-    padding-bottom: 10px;
-    text-align: center;
-    
 
-}
 
 /* Les largeurs des inputs */
 input[type=text], input[type=password], input[type=email]{
@@ -87,8 +106,7 @@ input[type=text], input[type=password], input[type=email]{
     border: 1px solid rgb(41, 39, 39);
     border-radius: 15px;
     box-sizing: border-box;
-    box-shadow: inset 8px 8px 7px rgba(110, 110, 110, 0.24);
-    
+    box-shadow: inset 8px 8px 7px rgba(110, 110, 110, 0.24);   
 }
 
 /* Le button de validation */
@@ -111,6 +129,4 @@ button[type=submit]:hover {
     color: #0c0c0c;
     border: 1px solid rgb(168, 56, 22)   ;
 }
-
-
 
