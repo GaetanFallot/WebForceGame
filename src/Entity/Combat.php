@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CombatRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -15,14 +16,14 @@ class Combat
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'date')]
-    private $date_combat;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private ?DateTimeImmutable $date_combat = null;
 
     #[ORM\ManyToMany(targetEntity: characters::class, inversedBy: 'combats')]
     private $characters;
 
     #[ORM\ManyToOne(targetEntity: characters::class, inversedBy: 'combatsWon')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private $vainqueur;
 
 
@@ -38,12 +39,12 @@ class Combat
         return $this->id;
     }
 
-    public function getDateCombat(): ?\DateTimeInterface
+    public function getDateCombat(): ?DateTimeImmutable
     {
         return $this->date_combat;
     }
 
-    public function setDateCombat(\DateTimeInterface $date_combat): self
+    public function setDateCombat(DateTimeImmutable $date_combat): self
     {
         $this->date_combat = $date_combat;
 
