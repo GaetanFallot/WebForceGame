@@ -17,6 +17,7 @@ class Characters implements EntityImageInterface
 
     const ABILITIES_COEFF = 3;
     const VITALITY_COEFF = 5;
+    const HP_MAX = 50;
 
     const IMAGE_DIRECTORY = "/image/character";
 
@@ -36,10 +37,7 @@ class Characters implements EntityImageInterface
     private $image;
 
     #[ORM\Column(type: 'integer')]
-    private ?int $hp_max = 50;
-
-    #[ORM\Column(type: 'integer')]
-    private $hp ;
+    private int $hp ;
 
     #[ORM\Column(type: 'integer')]
     #[Assert\NotBlank]
@@ -91,7 +89,6 @@ class Characters implements EntityImageInterface
 
 
 
-
     public function getId(): ?int
     {
         return $this->id;
@@ -124,20 +121,13 @@ class Characters implements EntityImageInterface
 
     public function getImageSrc(): ?string
     {
-        return self::IMAGE_DIRECTORY.$this->image;
+        return self::IMAGE_DIRECTORY."/".$this->image;
     }
 
 
     public function getHpMax(): ?int
     {
-        return  $this->getCon()*self::VITALITY_COEFF+$this->hp_max;
-    }
-
-    public function setHpMax(int $hp_max): self
-    {
-        $this->hp_max = $hp_max;
-
-        return $this;
+        return  $this->getCon()*self::VITALITY_COEFF+self::HP_MAX;
     }
 
     public function getHp(): ?int
@@ -147,7 +137,7 @@ class Characters implements EntityImageInterface
 
     public function setHp(int $hp): self
     {
-        $this->hp = $this->getHpMax();
+        $this->hp = $hp;
 
         return $this;
     }
