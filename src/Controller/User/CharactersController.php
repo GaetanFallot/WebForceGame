@@ -4,6 +4,8 @@ namespace App\Controller\User;
 
 use App\Entity\Characters;
 use App\Form\CharactersType;
+use App\Repository\CharactersRepository;
+use App\Repository\UserRepository;
 use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,6 +46,23 @@ class CharactersController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
-       
+    #[Route('/mes-personnages', name: 'user_characters')]
+    public function getUserCharacters(
+        CharactersRepository $charactersRepository,
+        UserRepository $userRepository
+    ): Response 
+    {
+   
+        
+        // Condition pour afficher dans user_characters un message si jamais le user n'a pas de personnages
+        // $user = $this->getUser();
+        // $characters = $user->getCharacters()->toArray();
+            
+        // a changer => app.user dans twig
+        return $this->render('characters/user/user_characters.html.twig'
+        // , [
+        //     'characters' => $characters
+        // ]
+    );
+    }
 }
