@@ -17,14 +17,13 @@ class CharactersController extends AbstractController
         ]);
     }
 
-    // ici faire characters liste
 
     #[Route('/charactersList', name: 'charactersList')]
     public function getCharactersList(
         CharactersRepository $charactersRepository
     ): Response 
     {
-        $characters = $charactersRepository->findAll();
+        $characters = $charactersRepository->findAllCharactersButNotMine($this->getUser());
         
         return $this->render('base/charactersList.html.twig', [
             'characters' => $characters

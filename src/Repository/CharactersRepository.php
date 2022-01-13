@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Characters;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -17,6 +18,21 @@ class CharactersRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Characters::class);
+    }
+
+    public function findAllCharactersButNotMine(?User $user): array
+    {
+        $queryBuilder = $this->createQueryBuilder('characters');
+        if ($user) {
+            $queryBuilder
+                    ->andWhere('characters.user != :user')
+                    ->setParameter('user', $user)
+            ;
+        }
+        return $queryBuilder
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     // /**

@@ -55,8 +55,23 @@
 								</div>
 							</div>
 
+
 						</div>
 					</div>
+						{# bouton défier #}
+						{% if app.user %}
+						<form method="POST" action="{{path('user_combat_create')}}">
+							<select name="character_id" id="character-select">
+								<option value="">Choisir sur perso</option>
+								{% for myCharacter in app.user.characters %}
+									<option value="{{myCharacter.id}}"><a>{{ myCharacter.name }}</a></option>
+								{% endfor %}
+							</select>
+							<input name="combat_opponent" type="hidden" value="{{ character.id }}" />
+							<button type="submit" > Défier </button>
+						</form>
+
+						{% endif %}
 				</div>
 			{% endfor %}
 			{% for character in characters %}
