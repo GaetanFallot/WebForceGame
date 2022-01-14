@@ -97,7 +97,7 @@ button:hover {
 
 /* affichage durant combat*/
 
-.card__face--back   {
+.card__face--back2   {
     position: relative;
     width: 400px;
     height: 400px;
@@ -114,9 +114,20 @@ button:hover {
     zoom: 100%;
 }
 
-.card__face--back {
+.card__face--back2 {
     transform: rotateY(0deg);
 }
 .container_fight_characters {
     display: flex;
+}
+.character_dmg
+{
+    display: flex;
+    flex-direction: column;
+    align-items :center;
+    gap: 15px;
+}
+
+.character_dmg button {
+    width: 175px;
 }

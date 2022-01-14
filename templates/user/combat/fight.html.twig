@@ -10,11 +10,10 @@
 {% block body %}
 
 
-<div class="">
-    <h1>Fight</h1>
+<h1>Fight</h1>
     <div class="container_fight_characters">
         {% for character in combat.characters %}
-                <div class="card__face card__face--back pile">
+                <div class="card__face card__face--back2 pile">
 
                     <div class=''>
                         <img class="characters_picture" src="{{ character.imageSrc }}"  alt="dé {{ character.profession.professionName }}" /></br>
@@ -47,9 +46,6 @@
                     </div>
                 </div>
         {% endfor %}
-
-
-
-</div>
+    </div>
 						
 {% endblock %}
