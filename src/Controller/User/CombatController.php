@@ -42,6 +42,10 @@ class CombatController extends AbstractController
         $fighter1 = $charactersRepository->find($fighter1);
         $fighter2 = $charactersRepository->find($fighter2);
         
+        // on gère le perso qui a déclanché le combat pour après
+        $fighter1->setStatus("ashForFight");
+        dd($fighter1->getStatus());
+        
         $combat->addCharacter($fighter1);    
         $combat->addCharacter($fighter2);  
         

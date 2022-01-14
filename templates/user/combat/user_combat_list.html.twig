@@ -13,6 +13,8 @@
                 Aucun Combat prévu ! Cliquez <a href="{{path('charactersList')}}">ici</a> pour accèder à la liste des personnages de tout les joueurs du site.
             </p>
             
+        {% else %}
+                
             {% for combat in combats %}
 
                 {{dump(combat)}}
