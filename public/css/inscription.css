@@ -19,19 +19,78 @@
     position: absolute;
     left: 30px;
     top: 350px;
-
+    animation-name: glissement;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
 }
+
+@keyframes glissement {
+    0% {
+      left: 20px;
+    }
+    50% {
+      top: 300px;
+    }
+    70% {
+        left: 50px;
+    }
+    100% {
+      left: 0px;
+    }
+  }
 
 .rouge {
     position: absolute;
     right: 30px;
+    animation-name: glissement2;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
 }
+
+@keyframes glissement2 {
+    0% {
+      right: 30px;
+    }
+    30% {
+      right: 60px;
+    }
+    /* 70% {
+        right: 50px;
+    } */
+    /* 100% {
+      right: 0px;
+    } */
+  }
 
 .violet {
     position: absolute;
     right: 30px;
     bottom: 30px;
+    animation-name: glissement3;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
 }
+
+@keyframes glissement3 {
+    0% {
+      bottom: 30px;
+    }
+    30% {
+        bottom: 60px;
+    }
+    /* 50% {
+      right: 20px;
+    } */
+    /* 70% {
+        right: 50px;
+    }
+    80% {
+        right: 30px;
+    } */
+    /* 100% {
+      right: 0px;
+    } */
+  }
 
 .container_inscription {
     width: 900px;
