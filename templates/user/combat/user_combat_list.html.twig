@@ -62,26 +62,26 @@
                                     </div>
                                 </div>
                             </div>
-                            {# {% if combat.challenger == character.= %}
+                        </div>
+                            {% if combat.challenger == character %}
                                
                                 <p> Personnage challenger </p>
                             
-                            {% endif %} #}
-                        </div>
+                            {% endif %} 
                     </div>
 
                 {% endfor %}
-                            {% if combat.challenger.user == app.user %}
-                                <p> En attente de la réponse de l'adversaire </p>
-                            
-                            {% else %}
-                                    <form action="{{ path('user_combat_start') }}">
-                                        <input type="submit" value="Accepter Combat" />
-                                    </form>
-                                    <form action="{{ path('user_combat_refused') }}">
-                                        <input type="submit" value="Refuser Combat" />
-                                    </form>
-                            {% endif %}
+                    {% if combat.challenger.user == app.user %}
+                        <p> En attente de la réponse de l'adversaire </p>
+                    
+                    {% else %}
+                            <form action="{{ path('user_combat_start') }}">
+                                <input type="submit" value="Accepter Combat" />
+                            </form>
+                            <form method="POST" action="{{ path('user_combat_refused') }}">
+                                <button type="submit" value="{{combat.id}}" name="id_combat">Refuser combat</button>
+                            </form>
+                    {% endif %}
             </div>
         {% endfor %}
     {% endif %}

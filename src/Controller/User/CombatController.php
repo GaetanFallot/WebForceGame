@@ -89,10 +89,13 @@ class CombatController extends AbstractController
 
     #[Route('/mes-combats-refusé', name: 'user_combat_refused')]
     public function combatRefused(
-        CombatRepository $combatRepository
+        CombatRepository $combatRepository,
+        Request $request
     ): Response
     {
-        $combatRepository->find();
+        $id_combat = $request->request->get('id_combat');
+        $combat = $combatRepository->find($id_combat);
+        $combat->setStatus('refused');
 
         return $this->redirectToRoute('user_combat_list');
     }
