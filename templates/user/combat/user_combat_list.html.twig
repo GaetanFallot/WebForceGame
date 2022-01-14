@@ -62,18 +62,26 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                            {% if combat.challenger.id == character.id %}
-                                <p> En attente de la réponse de l'adversaire </p>
+                            {# {% if combat.challenger == character.= %}
+                               
                                 <p> Personnage challenger </p>
                             
-                            {% else %}
-                                <button>Accepter combat</button>        
-                                <button>Refuser combat</button>        
-                            {% endif %}
+                            {% endif %} #}
+                        </div>
                     </div>
 
                 {% endfor %}
+                            {% if combat.challenger.user == app.user %}
+                                <p> En attente de la réponse de l'adversaire </p>
+                            
+                            {% else %}
+                                    <form action="{{ path('user_combat_start') }}">
+                                        <input type="submit" value="Accepter Combat" />
+                                    </form>
+                                    <form action="{{ path('user_combat_refused') }}">
+                                        <input type="submit" value="Refuser Combat" />
+                                    </form>
+                            {% endif %}
             </div>
         {% endfor %}
     {% endif %}
