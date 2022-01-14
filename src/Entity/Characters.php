@@ -79,12 +79,16 @@ class Characters implements EntityImageInterface
     #[ORM\OneToMany(mappedBy: 'vainqueur', targetEntity: Combat::class)]
     private $combatsWon;
 
+    #[ORM\OneToMany(mappedBy: 'challenger', targetEntity: Combat::class)]
+    private $challengerCombats;
+
 
 
     public function __construct()
     {
         $this->combats = new ArrayCollection();
         $this->combatsWon = new ArrayCollection();
+        $this->challengerCombats = new ArrayCollection();
     }
 
 
@@ -329,6 +333,36 @@ class Characters implements EntityImageInterface
             // set the owning side to null (unless already changed)
             if ($combatsWon->getVainqueur() === $this) {
                 $combatsWon->setVainqueur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Combat[]
+     */
+    public function getChallengerCombats(): Collection
+    {
+        return $this->challengerCombats;
+    }
+
+    public function addChallengerCombat(Combat $challengerCombat): self
+    {
+        if (!$this->challengerCombats->contains($challengerCombat)) {
+            $this->challengerCombats[] = $challengerCombat;
+            $challengerCombat->setChallenger($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChallengerCombat(Combat $challengerCombat): self
+    {
+        if ($this->challengerCombats->removeElement($challengerCombat)) {
+            // set the owning side to null (unless already changed)
+            if ($challengerCombat->getChallenger() === $this) {
+                $challengerCombat->setChallenger(null);
             }
         }
 

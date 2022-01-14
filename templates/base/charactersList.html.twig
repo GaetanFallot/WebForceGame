@@ -64,6 +64,7 @@
 							<select name="character_id" id="character-select">
 								<option value="">Choisir son perso</option>
 								{% for myCharacter in app.user.characters %}
+								{# if in fight disable option #}
 									<option value="{{myCharacter.id}}"><a>{{ myCharacter.name }}</a></option>
 								{% endfor %}
 							</select>
