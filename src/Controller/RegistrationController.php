@@ -8,7 +8,6 @@ use App\Form\RegistrationFormType;
 use App\Security\AppAuthenticator;
 use App\Service\NotifyService;
 use DateTimeImmutable;
->>>>>>> Envoie mail de confirmation
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
