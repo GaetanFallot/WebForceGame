@@ -16,7 +16,8 @@ class Combat
     const FIGHT_PENDING = "pending";
     const FIGHT_IN_PROGRESS = "in progress";
     const FIGHT_END = "end";
-
+    
+    const FIGHT_REFUSED = "refused";
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

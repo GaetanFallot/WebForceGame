@@ -72,6 +72,34 @@ class CombatController extends AbstractController
         ]
         );
     }
+    
+    #[Route('/zone-de-combats', name: 'user_combat_start')]
+    public function combatStart(
+        CombatRepository $combatRepository
+    ): Response
+    {
+        $combats = $combatRepository->findUserCombats($this->getUser());
+
+        return $this->render('user/combat/fight.html.twig'
+        ,[
+            'combats' => $combats
+        ]
+        );
+    }
+
+    #[Route('/mes-combats-refusé', name: 'user_combat_refused')]
+    public function combatRefused(
+        CombatRepository $combatRepository,
+        Request $request
+    ): Response
+    {
+        $id_combat = $request->request->get('id_combat');
+        $combat = $combatRepository->find($id_combat);
+        $combat->setStatus('refused');
+
+        return $this->redirectToRoute('user_combat_list');
+    }
+
 
     
 }
