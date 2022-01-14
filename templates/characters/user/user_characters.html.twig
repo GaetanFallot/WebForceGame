@@ -4,6 +4,11 @@
 	Liste de vos personnages
 {% endblock %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('css/testListCharacters.css') }}">
+{% endblock %}
+
 {% block body %}
 	
 	<main>
@@ -23,21 +28,44 @@
 				<div class="container-card">
 					<div class="card">
 						
-					<div class="card__face card__face--front">
-							<img class="characters_picture" src="{{ character.imageSrc }}"  alt="dé {{ character.profession.professionName }}" /></br>
-							<h3 class="card__face">{{ character.name }}</h3>
-						
-					</div>
+						<div class="card__face card__face--front">
+								<img class="characters_picture" src="{{ character.imageSrc }}"  alt="dé {{ character.profession.professionName }}" /></br>
+								<h3 class="card__face">{{ character.name }}</h3>
+							
+						</div>
 
-					<div class="card__face card__face--back pile">
-						<h3>{{ character.name }}</h3></br>
-						<div class="character_profession">
-							<p>{{ character.profession.professionName }}</p></br>
-							<div>
-								<img class="character_picture" src="{{ character.profession.imageSrc }}"  alt="dé {{ character.profession.professionName }}" /></br>
+						<div class="card__face card__face--back pile">
+
+							<h3>{{ character.name }}</h3></br>
+
+							<div class="character_profession">
+								<div class="character_hp_profession_name">
+									<p>{{ character.profession.professionName }}</p>
+									<p>Point de vie : {{ character.hp }}</p>
+								</div>
+								<div>
+									<img class="profession_picture" src="{{ character.profession.imageSrc }}"  alt="dé {{ character.profession.professionName }}" /></br>
+								</div>
 							</div>
-						</div>	
-						<p>{{ character.dex }}</p></div>
+							
+							
+							<div class="character_bloc_stats">
+								<div class="character_stats">
+									<p>Force : {{ character.str }}</p>
+									<p>Constitution : {{ character.con }}</p>
+									<p>Dextérité : {{ character.dex }}</p>
+									<p>Intelligence : {{ character.intel }}</p>
+								</div>
+								</br>
+								<div class="character_dmg">
+									<p>Attaque au contact : {{ character.attContact }}</p>
+									<p>Attaque à distance : {{ character.attDistance }}</p>
+									<p>Attaque magique : {{ character.attMagie }}</p>
+								</div>
+							</div>
+
+
+						</div>
 					</div>
 				</div>
 			{% endfor %}
