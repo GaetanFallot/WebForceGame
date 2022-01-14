@@ -14,10 +14,10 @@
 	<main>
 
 		<h1>Liste de vos personnages</h1>
-		<div class="container-main">
+		<div class="container-main2">
 
 		{% if app.user.characters is empty%}
-		<p> 
+		<p class="vide"> 
 			C'est bien vide par ici ! Cliquez <a href="{{path('createCharacters')}}">ICI</a> pour accèder au formulaire de création de personnage.
 		</p>
 		{% endif %}
