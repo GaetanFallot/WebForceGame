@@ -116,8 +116,21 @@ button[type=submit]:hover {
 
 /* gestion de la page confirmation */
 
+.confi-main {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+}
+
 
 .confi_container {
-    
+    width: 1200px;
+    height: 250px;
     font-family: 'Milonga', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin: 30px 0;
 }
