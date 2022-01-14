@@ -39,10 +39,10 @@ class CharactersController extends AbstractController
             $manager -> persist($characters);
             $manager->flush();
 
-            // return $this->redirectToRoute()  à mettre sur la route de ou sera stocké son personnage
+            return $this->redirectToRoute('user_characters'); 
         }
 
-        return $this->render('characters/user_characters.html.twig', [
+        return $this->render('characters/index.html.twig', [
             'form' => $form->createView()
         ]);
     }

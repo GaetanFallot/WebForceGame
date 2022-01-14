@@ -1,18 +1,107 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Zone de combat{% endblock %}
+{% block title %}Mes combats en attente{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('css/testListCharacters.css') }}">
+{% endblock %}
 
 {% block body %}
 
 
 <div class="">
- <h1>Zone de Combat</h1>
+ <h1>Mes combats en attente</h1>
 
-    {% for combat in combats %}
-
-            {{dump(combat)}}
-            {{dump(combat.characters)}}
+    {% if combats is empty%}
+        <p> 
+            Aucun Combat prévu ! Cliquez <a href="{{path('charactersList')}}">ici</a> pour accèder à la liste des personnages de tout les joueurs du site.
+        </p>
         
-    {% endfor %}
+    {% else %}
+        {% for combat in combats %}
+            <div class="container_combat">
+
+                {% for character in combat.characters %}
+
+                {{dump(combat.status)}}
+                        
+                    
+                    <div class="container-card">
+                        <div class="card">
+                            <div class="card__face card__face--front">
+                                <img class="characters_picture" src="{{ character.imageSrc }}"  alt="dé {{ character.profession.professionName }}" /></br>
+                                <h3 class="card__face">{{ character.name }}</h3>
+                            </div>
+
+                            <div class="card__face card__face--back pile">
+
+                                <h3>{{ character.name }}</h3></br>
+
+                                <div class="character_profession">
+                                    <div class="character_hp_profession_name">
+                                        <p>{{ character.profession.professionName }}</p>
+                                        <p>Point de vie : {{ character.hp }}</p>
+                                    </div>
+                                    <div>
+                                        <img class="profession_picture" src="{{ character.profession.imageSrc }}"  alt="dé {{ character.profession.professionName }}" /></br>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="character_bloc_stats">
+                                    <div class="character_stats">
+                                        <p>Force : {{ character.str }}</p>
+                                        <p>Constitution : {{ character.con }}</p>
+                                        <p>Dextérité : {{ character.dex }}</p>
+                                        <p>Intelligence : {{ character.intel }}</p>
+                                    </div>
+                                    </br>
+                                    <div class="character_dmg">
+                                        <p>Attaque au contact : {{ character.attContact }}</p>
+                                        <p>Attaque à distance : {{ character.attDistance }}</p>
+                                        <p>Attaque magique : {{ character.attMagie }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            {% if combat.challenger == character %}
+                               
+                                <p> Personnage challenger </p>
+                            
+                            {% endif %} 
+                    </div>
+
+                {% endfor %}
+                        {% if combat.status == 'refused' %}
+                            <p> Le combat a été annulé </p>
+                        {% elseif combat.status == 'in progress' %}
+                        
+                            <p> Le combat est en cours</p>
+                            <a class="button" href="{{path('user_combat', {id:combat.id})}}">Cliquez ici pour revenir sur le combat</a> 
+                            {# faire la meme en bas #}
+                            
+
+                        {% else %}
+                        {% if combat.challenger.user == app.user %}
+                            <p> En attente de la réponse de l'adversaire </p>
+                        
+                        {% else %}
+                            
+                            <a class="button" href="{{ path('user_combat_start', {id:combat.id}) }}">
+                                Accepter combat
+                            </a>
+                            <a class="button" href="{{ path('user_combat_refused', {id:combat.id}) }}">
+                                Refuser combat
+                            </a>
+
+                        {% endif %}
+                        
+                    {% endif %}
+            </div>
+        {% endfor %}
+    {% endif %}
+
 </div>
+						
 {% endblock %}

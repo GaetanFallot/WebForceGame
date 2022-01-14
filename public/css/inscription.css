@@ -1,12 +1,107 @@
-
 .main_inscription {
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
     font-family: 'Milonga', cursive;
+    
 }
 
+.container_inscription img {
+    width: 150px;
+    height: 150px;
+    
+    
+}
+
+.bleu {
+    position: absolute;
+    left: 30px;
+    top: 350px;
+    animation-name: glissement;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes glissement {
+    0% {
+      left: 20px;
+    }
+    50% {
+      top: 300px;
+    }
+    70% {
+        left: 50px;
+        top: 350px;
+    }
+    100% {
+      left: 0px;
+    }
+  }
+
+.rouge {
+    position: absolute;
+    right: 30px;
+    animation-name: glissement2;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes glissement2 {
+    0% {
+      right: 30px;
+    }
+    30% {
+      right: 60px;
+    }
+    
+  }
+
+.violet {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    animation-name: glissement3;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes glissement3 {
+    0% {
+      bottom: 30px;
+    }
+    30% {
+        bottom: 60px;
+    }
+    
+  }
+
+.container_inscription {
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+}
+
+
 .inscription{
-    width:600px;
-    margin:0 auto;
-    /*margin-top:10%;*/
+    width:50%;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+h1 {
+    font-size: 40px;
+}
+
+.a1 {
+    margin: 20px 0;
 }
 
 /* Les formes des bordures*/
@@ -23,6 +118,8 @@ form {
     width: 35%;
     padding-bottom: 10px;
     text-align: center;
+    
+
 }
 
 /* Les largeurs des inputs */
@@ -60,3 +157,24 @@ button[type=submit]:hover {
 }
 
 
+
+/* gestion de la page confirmation */
+
+.confi-main {
+    width: 100%;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.confi_container {
+    width: 1200px;
+    height: 250px;
+    font-family: 'Milonga', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin: 30px 0;
+}

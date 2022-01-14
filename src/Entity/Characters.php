@@ -31,7 +31,7 @@ class Characters implements EntityImageInterface
     #[ORM\Column(type: 'string', length: 100, unique: true)]
     #[Assert\NotBlank]
     private $name;
-    
+
     #[ORM\Column(type: 'string', length: 255)]
     // #[Assert\NotBlank] J'arrive pas à obliger une image ici
     private $image;
@@ -40,18 +40,24 @@ class Characters implements EntityImageInterface
     private int $hp ;
 
     #[ORM\Column(type: 'integer')]
+
+    #[Assert\PositiveOrZero(message: "Veuillez choisir un nombre positif !")]
     #[Assert\NotBlank]
     private int $str = 0;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\PositiveOrZero(message: "Veuillez choisir un nombre positif !")]
     #[Assert\NotBlank]
     private int $con = 0;
 
     #[ORM\Column(type: 'integer')]
+
+    #[Assert\PositiveOrZero(message: "Veuillez choisir un nombre positif !")]
     #[Assert\NotBlank]
     private int $dex = 0;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\PositiveOrZero(message: "Veuillez choisir un nombre positif !")]
     #[Assert\NotBlank]
     private int $intel = 0 ;
 
@@ -79,14 +85,39 @@ class Characters implements EntityImageInterface
     #[ORM\OneToMany(mappedBy: 'vainqueur', targetEntity: Combat::class)]
     private $combatsWon;
 
+    #[ORM\OneToMany(mappedBy: 'challenger', targetEntity: Combat::class)]
+    private $challengerCombats;
+
+    #[ORM\OneToMany(mappedBy: 'character', targetEntity: Hit::class, orphanRemoval: true)]
+    private $hits;
+
 
 
     public function __construct()
     {
         $this->combats = new ArrayCollection();
         $this->combatsWon = new ArrayCollection();
+        $this->challengerCombats = new ArrayCollection();
+        $this->hits = new ArrayCollection();
     }
 
+
+    public function getHitTypeDamage(string $hit): int
+    {
+        return match ($hit) {
+            'contact' => $this->getAttContact(),
+            'distance' => $this->getAttDistance(),
+            'magie' => $this->getAttMagie(),
+            default => 0,
+        };
+    }
+
+    public function decrementHp(int $hp): self
+    {
+        $this->hp -= $hp;
+
+        return $this;
+    }
 
 
     public function getId(): ?int
@@ -254,10 +285,10 @@ class Characters implements EntityImageInterface
         return $this->intel*self::ABILITIES_COEFF;
     }
 
-    #[Assert\EqualTo(value: self::MAX_TOTAL_ABILITIES,)]
+    #[Assert\EqualTo(value: self::MAX_TOTAL_ABILITIES, message:"Le total des capacités ne doit pas dépasser 5")]
     public function getTotalAbilities(): int
     {
-        
+
         return $this->getStr()+$this->getCon()+$this->getDex()+$this->getIntel();
     }
 
@@ -335,5 +366,65 @@ class Characters implements EntityImageInterface
         return $this;
     }
 
-    
+    /**
+     * @return Collection|Combat[]
+     */
+    public function getChallengerCombats(): Collection
+    {
+        return $this->challengerCombats;
+    }
+
+    public function addChallengerCombat(Combat $challengerCombat): self
+    {
+        if (!$this->challengerCombats->contains($challengerCombat)) {
+            $this->challengerCombats[] = $challengerCombat;
+            $challengerCombat->setChallenger($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChallengerCombat(Combat $challengerCombat): self
+    {
+        if ($this->challengerCombats->removeElement($challengerCombat)) {
+            // set the owning side to null (unless already changed)
+            if ($challengerCombat->getChallenger() === $this) {
+                $challengerCombat->setChallenger(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Hit[]
+     */
+    public function getHits(): Collection
+    {
+        return $this->hits;
+    }
+
+    public function addHit(Hit $hit): self
+    {
+        if (!$this->hits->contains($hit)) {
+            $this->hits[] = $hit;
+            $hit->setCharacter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHit(Hit $hit): self
+    {
+        if ($this->hits->removeElement($hit)) {
+            // set the owning side to null (unless already changed)
+            if ($hit->getCharacter() === $this) {
+                $hit->setCharacter(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

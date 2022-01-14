@@ -62,8 +62,9 @@
 						{% if app.user %}
 						<form method="POST" action="{{path('user_combat_create')}}">
 							<select name="character_id" id="character-select">
-								<option value="">Choisir sur perso</option>
+								<option value="">Choisir son perso</option>
 								{% for myCharacter in app.user.characters %}
+								{# if in fight disable option #}
 									<option value="{{myCharacter.id}}"><a>{{ myCharacter.name }}</a></option>
 								{% endfor %}
 							</select>
@@ -74,49 +75,6 @@
 						{% endif %}
 				</div>
 			{% endfor %}
-			{% for character in characters %}
-				<div class="container-card">
-					<div class="card">
-						
-					<div class="card__face card__face--front">
-							<img class="characters_picture" src="{{ character.imageSrc }}"  alt="dé {{ character.profession.professionName }}" /></br>
-							<h3 class="card__face">{{ character.name }}</h3>
-						
-					</div>
-
-					<div class="card__face card__face--back pile">
-						<h3>{{ character.name }}</h3></br>
-						<div class="character_profession">
-							<p>{{ character.profession.professionName }}</p></br>
-							<div>
-								<img class="character_picture" src="{{ character.profession.imageSrc }}"  alt="dé {{ character.profession.professionName }}" /></br>
-							</div>
-						</div>	
-						<p>{{ character.dex }}</p></div>
-					</div>
-				</div>
-			{% endfor %}
-			{% for character in characters %}
-				<div class="container-card">
-					<div class="card">
-						
-					<div class="card__face card__face--front">
-							<img class="characters_picture" src="{{ character.imageSrc }}"  alt="dé {{ character.profession.professionName }}" /></br>
-							<h3 class="card__face">{{ character.name }}</h3>
-						
-					</div>
-
-					<div class="card__face card__face--back pile">
-						<h3>{{ character.name }}</h3></br>
-						<div class="character_profession">
-							<p>{{ character.profession.professionName }}</p></br>
-							<div>
-								<img class="character_picture" src="{{ character.profession.imageSrc }}"  alt="dé {{ character.profession.professionName }}" /></br>
-							</div>
-						</div>	
-						<p>{{ character.dex }}</p></div>
-					</div>
-				</div>
-			{% endfor %}
+			
 	</main>		
 {% endblock %}

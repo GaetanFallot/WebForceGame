@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes combats en attente{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('css/testListCharacters.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/fight.js') }}"></script>
+{% endblock %}
+
+
+{% block body %}
+
+
+<h1>Fight</h1>
+    <div class="container_fight_characters">
+        {% for character in combat.characters %}
+                <div class="card__face card__face--back2 pile {{ combat.challenger == character ? 'challenger' : 'outsider' }}">
+
+                    <div class=''>
+                        <img class="characters_picture" src="{{ character.imageSrc }}"  alt="dé {{ character.profession.professionName }}" /></br>
+                        <h3 class="card__face">{{ character.name }}</h3>
+                    </div>
+
+                    <div class="character_profession">
+                        <div class="character_hp_profession_name">
+                            <p>{{ character.profession.professionName }}</p>
+                            <p>Point de vie : <span id="hp">{{ character.hp }}</span></p>
+                        </div>
+                        <div>
+                            <img class="profession_picture" src="{{ character.profession.imageSrc }}"  alt="dé {{ character.profession.professionName }}" /></br>
+                        </div>
+                    </div>
+
+                    <div class="character_bloc_stats">
+                        <div class="character_stats">
+                            <p>Force : {{ character.str }}</p>
+                            <p>Constitution : {{ character.con }}</p>
+                            <p>Dextérité : {{ character.dex }}</p>
+                            <p>Intelligence : {{ character.intel }}</p>
+                        </div>
+                        </br>
+                        <div class="character_dmg">
+                            <button class="hit" data-hit="contact">Attaque au contact : {{ character.attContact }}</button>
+                            <button class="hit" data-hit="distance">Attaque à distance : {{ character.attDistance }}</button>
+                            <button class="hit" data-hit="magie">Attaque magique : {{ character.attMagie }}</button>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+
+    <div id="fight-data"
+         class="hidden"
+         data-hit-url="{{ path('user_combat_hit', {id: combat.id}) }}"
+         data-data-url="{{ path('user_combat_data', {id: combat.id}) }}"
+    ></div>
+
+{% endblock %}
