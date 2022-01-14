@@ -23,6 +23,8 @@
             <div class="container_combat">
 
                 {% for character in combat.characters %}
+
+                {{dump(combat.status)}}
                         
                     
                     <div class="container-card">
@@ -71,16 +73,30 @@
                     </div>
 
                 {% endfor %}
-                    {% if combat.challenger.user == app.user %}
-                        <p> En attente de la réponse de l'adversaire </p>
-                    
-                    {% else %}
-                            <form action="{{ path('user_combat_start') }}">
-                                <input type="submit" value="Accepter Combat" />
-                            </form>
-                            <form method="POST" action="{{ path('user_combat_refused') }}">
-                                <button type="submit" value="{{combat.id}}" name="id_combat">Refuser combat</button>
-                            </form>
+                        {% if combat.status == 'refused' %}
+                            <p> Le combat a été annulé </p>
+                        {% elseif combat.status == 'in progress' %}
+                        
+                            <p> Le combat est en cours</p>
+                            <a class="button" href="{{path('user_combat', {id:combat.id})}}">Cliquez ici pour revenir sur le combat</a> 
+                            {# faire la meme en bas #}
+                            
+
+                        {% else %}
+                        {% if combat.challenger.user == app.user %}
+                            <p> En attente de la réponse de l'adversaire </p>
+                        
+                        {% else %}
+                            
+                            <a class="button" href="{{ path('user_combat_accepted', {id:combat.id}) }}">
+                                Accepter combat
+                            </a>
+                            <a class="button" href="{{ path('user_combat_refused', {id:combat.id}) }}">
+                                Refuser combat
+                            </a>
+
+                        {% endif %}
+                        
                     {% endif %}
             </div>
         {% endfor %}

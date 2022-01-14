@@ -73,32 +73,46 @@ class CombatController extends AbstractController
         );
     }
     
-    #[Route('/zone-de-combats', name: 'user_combat_start')]
-    public function combatStart(
-        CombatRepository $combatRepository
+    #[Route('/mes-combats-accepted/{id}', name: 'user_combat_start')]
+    public function combatAccepte(
+        EntityManagerInterface $manager,
+        Combat $combat
     ): Response
     {
-        $combats = $combatRepository->findUserCombats($this->getUser());
+        $combat->setStatus('in progress');   
+        $manager->flush();
 
-        return $this->render('user/combat/fight.html.twig'
-        ,[
-            'combats' => $combats
-        ]
-        );
+        return $this->redirectToRoute('user_combat_list');
+        // return $this->redirectToRoute('fight');
+        // return $this->render('user/combat/fight.html.twig');
     }
 
-    #[Route('/mes-combats-refusé', name: 'user_combat_refused')]
+    #[Route('/mes-combats-refuse/{id}', name: 'user_combat_refused')]
     public function combatRefused(
-        CombatRepository $combatRepository,
-        Request $request
+        EntityManagerInterface $manager,
+        Combat $combat
     ): Response
     {
-        $id_combat = $request->request->get('id_combat');
-        $combat = $combatRepository->find($id_combat);
         $combat->setStatus('refused');
+        $manager->flush();
 
         return $this->redirectToRoute('user_combat_list');
     }
+    
+    #[Route('/fight/{id}', name: 'user_combat')]
+    public function combatStart(
+        EntityManagerInterface $manager,
+        Combat $combat
+    ): Response
+    {
+        // dd($combat);
+
+        
+        return $this->render('user/combat/fight.html.twig', [
+            'combat' => $combat
+        ]);
+    }
+
 
 
     

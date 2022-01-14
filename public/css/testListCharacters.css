@@ -45,3 +45,29 @@
     justify-content: space-around;
     align-items: center;
 }
+
+/* affichage durant combat*/
+
+.card__face--back   {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+    border: 3px solid black;
+    border-radius: 15px;
+    font-family: 'Milonga', cursive;
+    padding: 5px;
+    background-image: url(../image/fond_carte.jpg);
+    background-size: cover;
+    background-position: center;
+    zoom: 100%;
+}
+
+.card__face--back {
+    transform: rotateY(0deg);
+}
+.container_fight_characters {
+    display: flex;
+}

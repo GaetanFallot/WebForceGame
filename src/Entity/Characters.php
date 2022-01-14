@@ -38,20 +38,26 @@ class Characters implements EntityImageInterface
 
     #[ORM\Column(type: 'integer')]
     private int $hp ;
-
+    
     #[ORM\Column(type: 'integer')]
+
+    #[Assert\PositiveOrZero(message: "Veuillez choisir un nombre positif !")]
     #[Assert\NotBlank]
     private int $str = 0;
-
+    
     #[ORM\Column(type: 'integer')]
+    #[Assert\PositiveOrZero(message: "Veuillez choisir un nombre positif !")]
     #[Assert\NotBlank]
     private int $con = 0;
-
+    
     #[ORM\Column(type: 'integer')]
+
+    #[Assert\PositiveOrZero(message: "Veuillez choisir un nombre positif !")]
     #[Assert\NotBlank]
     private int $dex = 0;
-
+    
     #[ORM\Column(type: 'integer')]
+    #[Assert\PositiveOrZero(message: "Veuillez choisir un nombre positif !")]
     #[Assert\NotBlank]
     private int $intel = 0 ;
 
@@ -258,7 +264,7 @@ class Characters implements EntityImageInterface
         return $this->intel*self::ABILITIES_COEFF;
     }
 
-    #[Assert\EqualTo(value: self::MAX_TOTAL_ABILITIES,)]
+    #[Assert\EqualTo(value: self::MAX_TOTAL_ABILITIES, message:"Le total des capacités ne doit pas dépasser 5")]
     public function getTotalAbilities(): int
     {
         
