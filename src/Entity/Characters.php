@@ -62,7 +62,7 @@ class Characters implements EntityImageInterface
     private ?string $status = 'alive';
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'characters')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private $user;
 
     #[ORM\ManyToOne(targetEntity: Profession::class, inversedBy: 'characters')]

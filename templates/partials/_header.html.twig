@@ -17,15 +17,17 @@
 
         <div class="connexion">
             {% if app.user %}
-                <a href="{{ path('app_logout') }}">Déconnexion</a>
+                <a class="nav-link"> Compte : {{ app.user.userName }}</a>
                 <a class="nav-link" href="{{ path('createCharacters') }}">Création personnage</a>
                 <a class="nav-link" href="{{ path('user_characters') }}">Mes personnages</a>
-
+                <a class="nav-link" href="{{ path('user_combat_list') }}">Mes combats</a>
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
+                
                 {% if app.user.role[0] == "ROLE_ADMIN" %}
-                    <a href="{{ path('admin_dashboard') }}">Tableau de bord</a>
+                    <a href="{{ path('admin_dashboard') }}" class="co">Tableau de bord</a>
 
                 {% endif %}
-
+                
             {% else %}
                 <a href="{{ path('app_login') }}" class="co">Connexion</a>
                 <a href="{{ path('app_register') }}">Inscription</a>
