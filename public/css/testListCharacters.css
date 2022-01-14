@@ -35,3 +35,13 @@
     justify-content: space-around;
 }
 
+/* Ici gerer l'affichage des combats */
+
+.container_combat
+{
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
