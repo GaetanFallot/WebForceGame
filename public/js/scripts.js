@@ -20,10 +20,12 @@ cards.forEach(card => {
       });
 
       const imgInp = $('input[name="characters[image]"]')[0]
-      imgInp.onchange = () => {
-        const [file] = imgInp.files
-        if (file) {
-          $('#display-character-image')[0].src = URL.createObjectURL(file)
+      if (imgInp) {
+        imgInp.onchange = () => {
+          const [file] = imgInp.files
+          if (file) {
+            $('#display-character-image')[0].src = URL.createObjectURL(file)
+          }
         }
       }
   })
