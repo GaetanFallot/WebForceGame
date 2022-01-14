@@ -62,7 +62,7 @@
 						{% if app.user %}
 						<form method="POST" action="{{path('user_combat_create')}}">
 							<select name="character_id" id="character-select">
-								<option value="">Choisir sur perso</option>
+								<option value="">Choisir son perso</option>
 								{% for myCharacter in app.user.characters %}
 								{# if in fight disable option #}
 									<option value="{{myCharacter.id}}"><a>{{ myCharacter.name }}</a></option>
