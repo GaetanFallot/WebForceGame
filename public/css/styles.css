@@ -153,7 +153,7 @@ header a{
     color: black;
 }
 
-a:hover {
+header a:hover {
   color: #ae5232;
 }
 
@@ -225,7 +225,7 @@ a:hover {
     color: black;
 }
 
-a:hover {
+.nav-footer a:hover {
   color: #ae5232;
 }
 

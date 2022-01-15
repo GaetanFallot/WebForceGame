@@ -10,7 +10,7 @@
 {% block body %}
 
 
-<div class="">
+<div class="container-main-attente">
  <h1>Mes combats en attente</h1>
 
     {% if combats is empty%}
@@ -67,7 +67,7 @@
                         </div>
                             {% if combat.challenger == character %}
                                
-                                <p> Personnage challenger </p>
+                                <p class="p-chall"> Personnage challenger </p>
                             
                             {% endif %} 
                     </div>
@@ -88,10 +88,10 @@
                         
                         {% else %}
                             
-                            <a class="button" href="{{ path('user_combat_start', {id:combat.id}) }}">
+                            <a class="button button-accepte" href="{{ path('user_combat_start', {id:combat.id}) }}">
                                 Accepter combat
                             </a>
-                            <a class="button" href="{{ path('user_combat_refused', {id:combat.id}) }}">
+                            <a class="button button-refuse" href="{{ path('user_combat_refused', {id:combat.id}) }}">
                                 Refuser combat
                             </a>
 

@@ -15,8 +15,8 @@
 
 {% block body %}
 
-
-<h1>Fight</h1>
+<div class="main-fight">
+    <h1>Fight</h1>
     <div class="container_fight_characters">
         {% for character in combat.characters %}
                 <div class="card__face card__face--back2 pile {{ combat.challenger == character ? 'challenger' : 'outsider' }}">
@@ -54,10 +54,11 @@
         {% endfor %}
     </div>
 
-    <div id="fight-data"
-         class="hidden"
-         data-hit-url="{{ path('user_combat_hit', {id: combat.id}) }}"
-         data-data-url="{{ path('user_combat_data', {id: combat.id}) }}"
-    ></div>
 
+    <div id="fight-data"
+        class="hidden"
+        data-hit-url="{{ path('user_combat_hit', {id: combat.id}) }}"
+        data-data-url="{{ path('user_combat_data', {id: combat.id}) }}"
+    ></div>
+</div>
 {% endblock %}

@@ -87,12 +87,23 @@ button:hover {
 }
 /* Ici gerer l'affichage des combats */
 
+.container-main-attente {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .container_combat {
-    width: 70%;
+    width: 1200px;
+    margin: 20px 0;
+    background: #dab47c;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    border: 1px solid black;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px grey;
 }
 
 /* affichage durant combat*/
@@ -117,8 +128,40 @@ button:hover {
 .card__face--back2 {
     transform: rotateY(0deg);
 }
-.container_fight_characters {
+
+.main-fight {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-fight h1 {
+    width: 1200px;
+    text-align: center;
+    margin: 20px 0;
+    font-size: 40px;
+    font-family: 'Special Elite', cursive;
+    animation-duration: 6s;
+    animation-name: glissement4;
+}
+
+@keyframes glissement4 {
+    from {
+      margin-left: 150%;
+      width: 1200px;
+    }
+
+    to {
+      margin-left: 0%;
+      width: 600px;
+    }
+}
+
+.container_fight_characters {
+    width: 1200px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
 }
 .character_dmg
 {
@@ -136,4 +179,50 @@ button:hover {
 }
 .isNext .character_dmg {
     visibility: visible;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-family: 'Special Elite', cursive;
+}
+
+.p-chall {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+p, .button {
+    font-family: 'Special Elite', cursive;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.button {
+    padding: 10px;
+    background: #d2873a;
+    border-radius: 15px;
+}
+
+.button:hover {
+    background: #5a8a2c;
+}
+
+.button-accepte {
+    background: #5a8a2c;
+}
+
+.button-accepte:hover {
+    background: #e6b956;
+}
+
+.button-refuse {
+    background: red;
+}
+
+.button-refuse:hover {
+    background: #e6b956;
 }
