@@ -44,7 +44,7 @@ function handleCombatData(data) {
     alert('LE COMBAT EST TERMINE')
   }
 
-  $('.container_fight_characters').removeClass('isNext')
+  $('.container_fight_characters .challenger, .container_fight_characters .outsider').removeClass('isNext')
   $('.container_fight_characters .'+data.next).addClass('isNext')
 
   $('.container_fight_characters .challenger #hp').text(data.challenger.hp)

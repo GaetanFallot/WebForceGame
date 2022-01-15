@@ -52,16 +52,7 @@ class CharactersController extends AbstractController
         UserRepository $userRepository
     ): Response 
     {
-   
-        
-        // Condition pour afficher dans user_characters un message si jamais le user n'a pas de personnages
-        // $user = $this->getUser();
-        // $characters = $user->getCharacters()->toArray();
-            
-        return $this->render('characters/user/user_characters.html.twig'
-        // , [
-        //     'characters' => $characters
-        // ]
-    );
+  
+        return $this->render('characters/user/user_characters.html.twig');
     }
 }

@@ -131,3 +131,9 @@ button:hover {
 .character_dmg button {
     width: 175px;
 }
+.character_dmg {
+    visibility: hidden;
+}
+.isNext .character_dmg {
+    visibility: visible;
+}
