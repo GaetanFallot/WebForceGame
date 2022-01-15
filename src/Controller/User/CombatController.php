@@ -106,6 +106,17 @@ class CombatController extends AbstractController
         Combat $combat
     ): Response
     {
+        // dd(json($data));
+        // $challenger = $combat->getChallenger();
+        // $outsider = $combat->getOpponent($challenger);
+        // $challengerHp = $challenger->getHp();
+        // $outsiderHp = $outsider->getHp();
+        
+        // if($challengerHp <= 0 )
+        // {
+        //     dd($challenger->getHp());
+        // }
+        
         return $this->render('user/combat/fight.html.twig', [
             'combat' => $combat
         ]);
@@ -128,6 +139,7 @@ class CombatController extends AbstractController
         $damage = $character->getHitTypeDamage($type);
         $opponent = $combat->getOpponent($character);
         $opponent->decrementHp($damage);
+
 
         $hit = (new Hit())
             ->setCombat($combat)
