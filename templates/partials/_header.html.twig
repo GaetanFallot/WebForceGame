@@ -17,7 +17,7 @@
 
         <div class="connexion">
             {% if app.user %}
-                <a class="nav-link"> Compte : {{ app.user.userName }}</a>
+                <p class="nav-link"> Compte : {{ app.user.userName }}</p>
                 <a class="nav-link" href="{{ path('createCharacters') }}">Création personnage</a>
                 <a class="nav-link" href="{{ path('user_characters') }}">Mes personnages</a>
                 <a class="nav-link" href="{{ path('user_combat_list') }}">Mes combats</a>
