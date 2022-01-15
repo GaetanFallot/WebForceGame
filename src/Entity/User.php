@@ -75,6 +75,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $isVerified = false;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ForumPost::class)]
+    private $forumPosts;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ForumPostComment::class)]
+    private $forumPostComments;
+
 
 
     public function __construct()
@@ -83,6 +89,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->role = ['ROLE_USER'];
         $this->isDeleted = "false";
         $this->isBanned = "false";
+        $this->forumPosts = new ArrayCollection();
+        $this->forumPostComments = new ArrayCollection();
 
     }
 
@@ -323,6 +331,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setSlug($slug): void
     {
         $this->slug = $slug;
+    }
+
+    /**
+     * @return Collection|ForumPost[]
+     */
+    public function getForumPosts(): Collection
+    {
+        return $this->forumPosts;
+    }
+
+    public function addForumPost(ForumPost $forumPost): self
+    {
+        if (!$this->forumPosts->contains($forumPost)) {
+            $this->forumPosts[] = $forumPost;
+            $forumPost->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeForumPost(ForumPost $forumPost): self
+    {
+        if ($this->forumPosts->removeElement($forumPost)) {
+            // set the owning side to null (unless already changed)
+            if ($forumPost->getUser() === $this) {
+                $forumPost->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ForumPostComment[]
+     */
+    public function getForumPostComments(): Collection
+    {
+        return $this->forumPostComments;
+    }
+
+    public function addForumPostComment(ForumPostComment $forumPostComment): self
+    {
+        if (!$this->forumPostComments->contains($forumPostComment)) {
+            $this->forumPostComments[] = $forumPostComment;
+            $forumPostComment->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeForumPostComment(ForumPostComment $forumPostComment): self
+    {
+        if ($this->forumPostComments->removeElement($forumPostComment)) {
+            // set the owning side to null (unless already changed)
+            if ($forumPostComment->getUser() === $this) {
+                $forumPostComment->setUser(null);
+            }
+        }
+
+        return $this;
     }
 
 
