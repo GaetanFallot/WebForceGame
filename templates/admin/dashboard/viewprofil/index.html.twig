@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace Admin{% endblock %}
+
+{% block body %}
+
+
+    <h1>Profil de {{ user.username}} </h1>
+    <p>Prénom : {{ user.firstname }}</p>
+    <p>Nom : {{ user.lastname }}</p>
+    <p>Adresse mail : {{ user.email }}</p>
+    <p>Inscrit depuis le  : {{ user.createdAt|date('d-m-Y') }}</p>
+    <p>Status : {{ user.status }}</p>
+    <p>Joueur banni : {{ user.isBanned }}</p>
+
+
+    <a href="{{ path('deleteprofil', { 'id': user.id }) }}"><button type="submit" class="btn btn-primary"> Supprimer</button></a>
+    <a href="{{ path('bloquerprofil', { 'id': user.id }) }}"><button type="submit" class="btn btn-primary"> Bloquer</button></a>
+    <a href="{{ path('debloquerprofil', { 'id': user.id }) }}"><button type="submit" class="btn btn-primary"> Débloquer</button></a>
+
+{% endblock %}

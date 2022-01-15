@@ -3,3 +3,7 @@ framework:
         dsn: '%env(MAILER_DSN)%'
         envelope:
             sender: '%email_website%'
+
+        headers:
+            from: 'Web Force Game <eniscigtest@gmail.com>'
+
