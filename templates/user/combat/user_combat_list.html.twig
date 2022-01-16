@@ -22,10 +22,7 @@
         {% for combat in combats %}
             <div class="container_combat">
 
-                {% for character in combat.characters %}
-
-                {{dump(combat.status)}}
-                        
+                {% for character in combat.characters %}                        
                     
                     <div class="container-card">
                         <div class="card">
@@ -79,11 +76,15 @@
                         
                             <p> Le combat est en cours</p>
                             <a class="button" href="{{path('user_combat', {id:combat.id})}}">Cliquez ici pour revenir sur le combat</a> 
-                            {# faire la meme en bas #}
                             
+                            
+                        {% elseif combat.status == 'end' %}
+
+                            <p> Le combat est terminé le vainqueur est {{combat.vainqueur.name}}<p> 
 
                         {% else %}
                         {% if combat.challenger.user == app.user %}
+
                             <p> En attente de la réponse de l'adversaire </p>
                         
                         {% else %}

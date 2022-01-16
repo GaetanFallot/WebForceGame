@@ -40,8 +40,9 @@ function refreshCombat() {
 }
 
 function handleCombatData(data) {
-  if (data.status === 'finished') {
+  if (data.status === 'end') {
     alert('LE COMBAT EST TERMINE')
+    window.location.href=URLCombatList;
   }
 
   $('.container_fight_characters .challenger, .container_fight_characters .outsider').removeClass('isNext')
