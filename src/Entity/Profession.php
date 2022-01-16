@@ -128,6 +128,10 @@ class Profession
     public function getImageSrc(): ?string
     {
         return self::IMAGE_DIRECTORY."/".$this->image;
+    } 
+
+    public function getBase64Img() : ?string{
+        return base64_encode(file_get_contents(self::IMAGE_DIRECTORY."/".$this->image));
     }
 
 }
