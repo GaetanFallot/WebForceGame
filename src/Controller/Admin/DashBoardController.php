@@ -46,7 +46,7 @@ class DashBoardController extends AbstractController
         $entityManager->flush();
 
         $this->addFlash('message', 'Utilisateur supprimé avec succès');
-        return $this->render('admin/dashboard/viewprofil/index.html.twig');
+        return $this->redirectToRoute('moderation');
 
     }
     #[Route('/bloquer/{id}', name: 'bloquerprofil')]
