@@ -19,6 +19,15 @@ cards.forEach(card => {
         })
       });
 
+      $('#characters_profession').change(function(){
+        $.get(URLProfessionDetails.replace('__idProfession__', $(this).val()), (res) => {
+          $('#display-profession_description').text(res.description);
+          $('#display-profession_image').attr("src", res.image);
+        })
+      })
+
+  
+
       const imgInp = $('input[name="characters[image]"]')[0]
       if (imgInp) {
         imgInp.onchange = () => {

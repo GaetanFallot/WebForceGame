@@ -138,8 +138,16 @@ class CombatController extends AbstractController
         $type = $request->request->get('hit');
         $damage = $character->getHitTypeDamage($type);
         $opponent = $combat->getOpponent($character);
-        $opponent->decrementHp($damage);
-
+        $opponent = $opponent->decrementHp($damage);
+        if ($opponent->getHp() <= 0 ) {
+            $combat->setStatus(Combat::FIGHT_END);
+            $combat->setVainqueur($character);
+            $opponent->resetHp();
+            $character->resetHp();
+            $entityManager->flush();
+            
+            return $this->redirectToRoute('user_combat_list');
+        }
 
         $hit = (new Hit())
             ->setCombat($combat)
