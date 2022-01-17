@@ -2,9 +2,14 @@
 
 {% block title %}Bloqué avec succès{% endblock %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock %}
+
 {% block body %}
 
-    <h1>Utilisateur bloqué avec succès</h1>
+    <h1 class="succes">Utilisateur bloqué avec succès</h1>
 
 
 

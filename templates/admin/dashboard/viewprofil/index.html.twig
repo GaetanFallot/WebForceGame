@@ -2,20 +2,27 @@
 
 {% block title %}Espace Admin{% endblock %}
 
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock %}
+
 {% block body %}
+    <div class="main-profil"> 
+        <h1>Profil de {{ user.username}} </h1>
+        <div class="container-profil">
+            <p>Prénom : {{ user.firstname }}</p>
+            <p>Nom : {{ user.lastname }}</p>
+            <p>Adresse mail : {{ user.email }}</p>
+            <p>Inscrit depuis le  : {{ user.createdAt|date('d-m-Y') }}</p>
+            <p>Status : {{ user.status }}</p>
+            <p>Joueur banni : {{ user.isBanned }}</p>
 
-
-    <h1>Profil de {{ user.username}} </h1>
-    <p>Prénom : {{ user.firstname }}</p>
-    <p>Nom : {{ user.lastname }}</p>
-    <p>Adresse mail : {{ user.email }}</p>
-    <p>Inscrit depuis le  : {{ user.createdAt|date('d-m-Y') }}</p>
-    <p>Status : {{ user.status }}</p>
-    <p>Joueur banni : {{ user.isBanned }}</p>
-
-
-    <a href="{{ path('deleteprofil', { 'id': user.id }) }}"><button type="submit" class="btn btn-primary"> Supprimer</button></a>
-    <a href="{{ path('bloquerprofil', { 'id': user.id }) }}"><button type="submit" class="btn btn-primary"> Bloquer</button></a>
-    <a href="{{ path('debloquerprofil', { 'id': user.id }) }}"><button type="submit" class="btn btn-primary"> Débloquer</button></a>
-
+            <div class="action">
+                <a href="{{ path('deleteprofil', { 'id': user.id }) }}"><button type="submit" class="suppr"> Supprimer</button></a>
+                <a href="{{ path('bloquerprofil', { 'id': user.id }) }}"><button type="submit" class="ban"> Bloquer</button></a>
+                <a href="{{ path('debloquerprofil', { 'id': user.id }) }}"><button type="submit" class="unban"> Débloquer</button></a>
+            </div>
+        </div>
+    </div>
 {% endblock %}

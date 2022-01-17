@@ -1,0 +1,145 @@
+
+/* PAGE ESPAGE ADMIN */
+.container-admin {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-admin h1 {
+    font-size: 30px;
+    font-family: 'Special Elite', cursive;
+    margin-top: 20px;
+}
+
+.admin {
+    width: 1200px;
+    font-family: 'Special Elite', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+    padding: 20px;
+    background: #dab47c;
+    border-radius: 15px;
+    box-shadow: 15px 15px 7px rgba(110, 110, 110, 0.24);
+}
+
+.admin h3 {
+    margin: 10px;
+}
+
+.admin button {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgb(175, 171, 171);
+    font-family: 'happy monkey', cursive;
+    background-color: #5a8a2c;
+    padding: 5px;
+}
+
+/* PAGE LISTE DES UTILISATEURS */
+
+.container-moderation {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-moderation h3 {
+    font-size: 30px;
+    font-family: 'Special Elite', cursive;
+    margin-top: 20px;
+}
+
+.liste-utilisateur {
+    width: 1200px;
+    font-family: 'Special Elite', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+    padding: 20px;
+    background: #dab47c;
+    border-radius: 15px;
+    box-shadow: 15px 15px 7px rgba(110, 110, 110, 0.24);
+}
+
+.liste-utilisateur a {
+    text-decoration: none;
+    color: black;
+    font-family: 'Happy Monkey', cursive;
+}
+
+.liste-utilisateur a:hover {
+    color: #ae5232;
+}
+
+/* PROFIL UTILISATEUR */
+
+.main-profil {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-profil {
+    width: 1200px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0;
+    padding: 20px;
+    background: #dab47c;
+    border-radius: 15px;
+    box-shadow: 15px 15px 7px rgba(110, 110, 110, 0.24);
+
+}
+
+.main-profil h1 {
+    font-size: 30px;
+    margin-top: 20px;
+    font-family: 'Special Elite', cursive;
+}
+
+.container-profil p {
+    font-family: 'Happy Monkey', cursive;
+}
+
+.action button {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgb(175, 171, 171);
+    font-family: 'happy monkey', cursive;
+    padding: 5px;
+}
+
+.suppr {
+    background: red;
+}
+
+.ban {
+    background: #d2873a;
+}
+
+.unban {
+    background: #5a8a2c;
+}
+
+.action button:hover {
+    background: #e6b956;
+}
+
+
+/* CONFIRMATION UTILISATEUR BLOQUE ET DEBLOQUE */
+
+.succes {
+    text-align: center;
+    font-family: 'Special Elite', cursive;
+    margin-top: 30px;
+}
