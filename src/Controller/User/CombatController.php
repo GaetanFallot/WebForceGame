@@ -142,6 +142,8 @@ class CombatController extends AbstractController
         if ($opponent->getHp() <= 0 ) {
             $combat->setStatus(Combat::FIGHT_END);
             $combat->setVainqueur($character);
+            $opponent->resetHp();
+            $character->resetHp();
             $entityManager->flush();
             
             return $this->redirectToRoute('user_combat_list');
