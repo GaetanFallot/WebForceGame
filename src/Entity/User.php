@@ -11,7 +11,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
@@ -51,24 +50,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 255)]
     private $status;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $isBanned;
-
-    #[ORM\Column(type: 'string', length: 255)]
-    private $isDeleted;
-
     #[ORM\Column(type: 'json')]
     private $role = [];
 
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Characters::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Characters::class)]
     private $characters;
 
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: UserToken::class, cascade: ['persist', 'remove'])]
 
     private $userToken;
-
-
 
     /**
      * @ORM\Column(type="boolean")
@@ -81,9 +71,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->characters = new ArrayCollection();
         $this->role = ['ROLE_USER'];
-        $this->isDeleted = "false";
-        $this->isBanned = "false";
-
     }
 
     public function getId(): ?int
@@ -277,53 +264,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIsBanned()
-    {
-        return $this->isBanned;
-    }
-
-    /**
-     * @param mixed $isBanned
-     */
-    public function setIsBanned($isBanned): void
-    {
-        $this->isBanned = $isBanned;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIsDeleted()
-    {
-        return $this->isDeleted;
-    }
-
-    /**
-     * @param mixed $isDeleted
-     */
-    public function setIsDeleted($isDeleted): void
-    {
-        $this->isDeleted = $isDeleted;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
-     * @param mixed $slug
-     */
-    public function setSlug($slug): void
-    {
-        $this->slug = $slug;
-    }
 
 
 }

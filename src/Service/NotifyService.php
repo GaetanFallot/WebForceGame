@@ -17,7 +17,19 @@ class NotifyService
         try {
             $this->mailer->send($email);
         } catch (Exception $e) {
+        
             throw $e;
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+

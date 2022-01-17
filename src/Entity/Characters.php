@@ -68,7 +68,7 @@ class Characters implements EntityImageInterface
     private ?string $status = 'alive';
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'characters')]
-    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
+    #[ORM\JoinColumn(nullable: false)]
     private $user;
 
     #[ORM\ManyToOne(targetEntity: Profession::class, inversedBy: 'characters')]
@@ -159,12 +159,6 @@ class Characters implements EntityImageInterface
     public function getHpMax(): ?int
     {
         return  $this->getCon()*self::VITALITY_COEFF+self::HP_MAX;
-    }
-
-    public function resetHp(): self
-    {
-        $hp = $this->getHpMax();
-        return $this->setHp($hp);
     }
 
     public function getHp(): ?int

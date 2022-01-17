@@ -10,7 +10,7 @@
 {% block body %}
 
 
-<div class="container-main-attente">
+<div class="">
  <h1>Mes combats en attente</h1>
 
     {% if combats is empty%}
@@ -22,7 +22,10 @@
         {% for combat in combats %}
             <div class="container_combat">
 
-                {% for character in combat.characters %}                        
+                {% for character in combat.characters %}
+
+                {{dump(combat.status)}}
+                        
                     
                     <div class="container-card">
                         <div class="card">
@@ -64,7 +67,7 @@
                         </div>
                             {% if combat.challenger == character %}
                                
-                                <p class="p-chall"> Personnage challenger </p>
+                                <p> Personnage challenger </p>
                             
                             {% endif %} 
                     </div>
@@ -76,23 +79,19 @@
                         
                             <p> Le combat est en cours</p>
                             <a class="button" href="{{path('user_combat', {id:combat.id})}}">Cliquez ici pour revenir sur le combat</a> 
+                            {# faire la meme en bas #}
                             
-                            
-                        {% elseif combat.status == 'end' %}
-
-                            <p> Le combat est terminé le vainqueur est {{combat.vainqueur.name}}<p> 
 
                         {% else %}
                         {% if combat.challenger.user == app.user %}
-
                             <p> En attente de la réponse de l'adversaire </p>
                         
                         {% else %}
                             
-                            <a class="button button-accepte" href="{{ path('user_combat_start', {id:combat.id}) }}">
+                            <a class="button" href="{{ path('user_combat_start', {id:combat.id}) }}">
                                 Accepter combat
                             </a>
-                            <a class="button button-refuse" href="{{ path('user_combat_refused', {id:combat.id}) }}">
+                            <a class="button" href="{{ path('user_combat_refused', {id:combat.id}) }}">
                                 Refuser combat
                             </a>
 

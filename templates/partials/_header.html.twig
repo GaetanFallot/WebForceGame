@@ -9,23 +9,21 @@
     <div class="headerD">
         <div class="nav-barre">
             <a href="{{ path('home') }}">Accueil</a>
-            <a href="{{ path('charactersList') }}">Liste des personnages</a>
-            <a href="#">A propos</a>
-            <a href="#">Forum</a>
-            <a href="#">Contact</a>
+            <a href="{{ path('charactersList') }}"> Liste personnages</a>
+            <a href="{{ path('about')}}">A propos</a>
+            <a href="{{ path('forum')}}">Forum</a>
+            <a href="{{ path('contact')}}">Contact</a>
         </div>
 
         <div class="connexion">
             {% if app.user %}
-                <p class="nav-link"> Compte : {{ app.user.userName }}</p>
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
                 <a class="nav-link" href="{{ path('createCharacters') }}">Création personnage</a>
                 <a class="nav-link" href="{{ path('user_characters') }}">Mes personnages</a>
                 <a class="nav-link" href="{{ path('user_combat_list') }}">Mes combats</a>
-                <a href="{{ path('app_logout') }}">Déconnexion</a>
                 
                 {% if app.user.role[0] == "ROLE_ADMIN" %}
-                    <a href="{{ path('admin_dashboard') }}" class="co">Tableau de bord</a>
-
+                    <p></p>
                 {% endif %}
                 
             {% else %}
