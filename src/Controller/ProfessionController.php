@@ -18,6 +18,7 @@ class ProfessionController extends AbstractController
 
         return new JsonResponse([
             'description' => $profession->getDescription(),
+            'image' =>$profession->getImageSrc(),
         ]);
     }
 

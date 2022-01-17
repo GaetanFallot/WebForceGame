@@ -161,6 +161,12 @@ class Characters implements EntityImageInterface
         return  $this->getCon()*self::VITALITY_COEFF+self::HP_MAX;
     }
 
+    public function resetHp(): ?int
+    {
+        $hp = $this->getHpMax();
+        return $this->setHp($hp);
+    }
+
     public function getHp(): ?int
     {
         return $this->hp;
