@@ -93,6 +93,12 @@ button:hover {
     align-items: center;
 }
 
+.container-main-attente h1 {
+    font-size: 30px;
+    margin-top: 20px;
+    font-family: 'Special Elite', cursive;
+}
+
 .container_combat {
     width: 1200px;
     margin: 20px 0;
